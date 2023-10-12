@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row">
+    <form class="col s12" id="reg-form">
+      <div class="=row">
+        <div class="title-msg">
+          <h4>Register Account</h4>
+          <span class="msg">Alreay have an account?
+             <a routerLink="/login">login</a></span>  
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="first_name" type="text" class="validate" name="first_name" [(ngModel)]="userdata.Firstname" required >
+          <label for="first_name">First Name</label>
+        </div>  
+        <div class="input-field col s6">
+          <input id="last_name" type="text" class="validate" name="last_name" [(ngModel)]="userdata.Lastname" required>
+          <label for="last_name">Last Name</label>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" class="validate" name="email" [(ngModel)]="userdata.Email" required helperText="">
+          <label for="email">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" type="password" class="validate" name="password" [(ngModel)]="userdata.Password" required>
+          <label for="password">Password</label>
+        </div>
+      </div>
+      <button class="btn waves-effect waves-teal" (click)="saveUserData()">Register</button>
+    </form>
+  </div>
+
+
+
+  <table>
+    <thead>
+      <tr>
+        <th>SI.no</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Password</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let Obj of userlist">
+        <td>{{Obj.UserID}}</td>
+        <td>{{Obj.Firstname}}</td>
+        <td>{{Obj.Lastname}}</td>
+        <td>{{Obj.Email}}</td>
+        <td>{{Obj.Password}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
