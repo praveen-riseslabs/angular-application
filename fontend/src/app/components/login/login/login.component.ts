@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Userdata } from 'src/app/models/Userdata';
-import { UserdataserviceService } from 'src/app/services/userdataservice.service';
+import { LoginService } from 'src/app/services/loginuser/login.service';
+import { UserdataserviceService } from 'src/app/services/registeruser/userdataservice.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,8 @@ export class LoginComponent implements OnInit {
 
   userdata: Userdata =  new Userdata();
   userlist :Userdata[] = [];
-  constructor(private userdataservice : UserdataserviceService) { }
+  message: string="login sucessfull"
+  constructor(private userdataservice : UserdataserviceService, private loginservice : LoginService ) { }
 
   ngOnInit() {
     this.userdataservice.getUserData('http://127.0.0.1:5000/getuser').subscribe((response) => {
@@ -24,15 +26,31 @@ export class LoginComponent implements OnInit {
   })
   }
 
-  login(){
-    const isUserExist = this.userlist.find(user =>user.Email ===  this.userdata.Email && user.Password == this.userdata.Password );
-  if(isUserExist != undefined)
+  // loginUser(){
+  //   const isUserExist = this.userlist.find(user =>user.Email ===  this.userdata.Email && user.Password == this.userdata.Password );
+  // if(isUserExist != undefined)
 
-  {
-    alert("logged in successfully")
-  }
-  else{
-    alert("wrong  credentials")
-  }
+  // {
+  //   alert("logged in successfully")
+  // }
+  // else{
+  //   alert("wrong  credentials")
+  // }
+  // }
+
+  login() {
+    debugger
+    this.loginservice.login(this.userdata.Email, this.userdata.Password).subscribe(
+      (response: any) => {
+        
+        this.message = response.message;
+        alert(this.message)
+        
+        // Handle successful login, e.g., navigate to another page or set a user session.
+      },
+      (error) => {
+        this.message = 'Invalid credentials'; // Handle login failure
+      }
+    );
   }
 }
