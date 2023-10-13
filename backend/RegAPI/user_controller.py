@@ -1,6 +1,6 @@
 from app import app
 import mysql.connector
-from flask import jsonify
+from flask import jsonify, abort
 from flask import request
 
 db = mysql.connector.connect(
@@ -45,3 +45,26 @@ def registeruser():
     except Exception as e:
         print(e)
     
+@app.route('/login' , methods =["POST"])
+def loginUser():
+    try:
+        _json = request.json
+        _email = _json['Email']
+        _password = _json['Password']
+
+        if _email and _password and request.method == 'POST':
+            # Query the database to check if the user with provided email and password exists
+            select_query = "SELECT * FROM registration WHERE Email = %s AND Password = %s"
+            values = (_email, _password)
+            cur.execute(select_query, values)
+            user = cur.fetchone()
+
+            if user:
+                return jsonify({'message': 'Login successful'}), 200
+            else:
+                return jsonify({'message': 'Invalid credentials'}), 401
+        else:
+            return "Error while sending data"
+    except Exception as e:
+        print(e)
+        abort(500, description='Internal server error')
