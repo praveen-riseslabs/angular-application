@@ -68,3 +68,32 @@ def loginUser():
     except Exception as e:
         print(e)
         abort(500, description='Internal server error')
+
+@app.route('/forgotpasswords', methods =["POST"])
+def checkEmailToForgotPassword():
+    try:
+        _json = request.json
+        _email = _json['Email']
+
+        if _email and request.method == 'POST':
+            # Query the database to check if the user with provided email  exists
+            select_query = "SELECT * FROM registration WHERE Email = %s"
+            values = (_email,)
+            cur.execute(select_query, values)
+            user = cur.fetchone()
+
+            if user:
+                email_data = {
+                    'Email': user['Email'],  # Replace 'Email' with the actual column name
+                    # Add other columns as needed
+                }
+                return jsonify({'message': 'Email is Verified', 'email_data': email_data}), 200
+            else:
+                return jsonify({'message': 'Email not found'}), 401
+        else:
+            return "Error while sending data"
+    except Exception as e:
+        print(e)
+        abort(500, description='Internal server error')
+
+        

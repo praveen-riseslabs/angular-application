@@ -8,5 +8,6 @@ def welcome():
     return "hello world"
 
 import user_controller
+import forgotpassword
 if __name__ == '__main':
     app.run(debug=True)

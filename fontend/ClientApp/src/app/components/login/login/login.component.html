@@ -21,7 +21,13 @@
           <input id="password" type="password" class="validate" name="password" [(ngModel)]="userdata.Password" required>
           <label for="password">Password</label>
         </div>
+        
       </div>
+      <div class="forgot-msg">
+        <span class="msg">Forgot your password?
+          <a routerLink="/forgotpassword">Click here</a></span>  
+      </div>
+      <br>
       <button class="btn waves-effect waves-teal" (click)="login()">Login</button>
     </form>
   </div>
