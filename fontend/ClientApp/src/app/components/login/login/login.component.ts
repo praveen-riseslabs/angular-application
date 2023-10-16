@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Userdata } from 'src/app/models/Userdata';
 import { LoginService } from 'src/app/services/loginuser/login.service';
 import { UserdataserviceService } from 'src/app/services/registeruser/userdataservice.service';
@@ -12,8 +13,9 @@ export class LoginComponent implements OnInit {
 
   userdata: Userdata =  new Userdata();
   userlist :Userdata[] = [];
-  message: string="login sucessfull"
-  constructor(private userdataservice : UserdataserviceService, private loginservice : LoginService ) { }
+  
+  constructor(private userdataservice : UserdataserviceService, private loginservice : LoginService,
+              private router : Router) { }
 
   ngOnInit() {
     this.userdataservice.getUserData('http://127.0.0.1:5000/getuser').subscribe((response) => {
@@ -39,18 +41,20 @@ export class LoginComponent implements OnInit {
   // }
 
   login() {
-    debugger
+    
     this.loginservice.login(this.userdata.Email, this.userdata.Password).subscribe(
       (response: any) => {
         
-        this.message = response.message;
-        alert(this.message)
-        
+        if(response.message == "Login successful"){
+          alert("login sucessfully")
+          this.router.navigate(['/homepage']);
+        }
+        else{
+          alert("wrog credentials")
+        }
         // Handle successful login, e.g., navigate to another page or set a user session.
-      },
-      (error) => {
-        this.message = 'Invalid credentials'; // Handle login failure
       }
+      
     );
   }
 }

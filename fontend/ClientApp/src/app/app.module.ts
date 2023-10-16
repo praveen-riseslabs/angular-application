@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login/login.component';
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword/resetpassword.component';
+import { HomepageComponent } from './components/homepage/homepage/homepage.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ResetpasswordComponent } from './components/resetpassword/resetpassword
     RegistrationComponent,
     LoginComponent,
     ForgotpasswordComponent,
-    ResetpasswordComponent
+    ResetpasswordComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
