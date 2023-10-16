@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras  } from '@angular/router';
 import { Userdata } from 'src/app/models/Userdata';
 import { ForgotpasswordService } from 'src/app/services/forgotpassword/forgotpassword.service';
 import { UserdataserviceService } from 'src/app/services/registeruser/userdataservice.service';
@@ -36,20 +36,38 @@ export class ForgotpasswordComponent implements OnInit {
   //     );
   // }
 
+  // checkEmailAvailability() {
+  //   debugger
+  //   this.forgotpasswordservice.chaeckEmail(this.userdata.Email).subscribe(
+  //     (data: any) => {
+  //       this.emailData = data.email_data.Email;
+  //       if(this.userlist.find(e =>e.Email == this.emailData))
+  //       {
+  //        this.router.navigate(['/resetpassword', {email:this.emailData}]);
+  //       }
+  //       else{
+  //         alert("Email does not exist")
+  //       }
+  //     },
+  //   );
+  // }
+
   checkEmailAvailability() {
     debugger
     this.forgotpasswordservice.chaeckEmail(this.userdata.Email).subscribe(
       (data: any) => {
         this.emailData = data.email_data.Email;
-        if(this.userlist.find(e =>e.Email == this.emailData))
-        {
-         this.router.navigate(['/resetpassword']);
+        if (this.userlist.find(e => e.Email === this.emailData)) {
+          const navigationExtras: NavigationExtras = {
+            replaceUrl: true, // Clears the current URL
+          };
+          this.router.navigate(['/resetpassword', { email: this.emailData }], navigationExtras);
+        } else {
+          alert("Email does not exist");
         }
-        else{
-          alert("Email does not exist")
-        }
-      }
+      },
     );
   }
+  
 
 }
