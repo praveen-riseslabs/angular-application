@@ -13,7 +13,7 @@ export class ForgotpasswordService {
   // getVerifiedEmial(email: string) : Observable<any>{
   //   return this.http.get(`${this.apiUrl}/forgotpasswords?Email=${email}`);
   
-  chaeckEmail(email:string) {
+  checkEmail(email:string) {
     const data = { Email: email };
     return this.http.post(`${this.apiUrl}/forgotpasswords`, data);
 }

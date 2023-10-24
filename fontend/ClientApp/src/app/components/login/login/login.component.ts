@@ -20,11 +20,11 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.userdataservice.getUserData('http://127.0.0.1:5000/getuser').subscribe((response) => {
       this.userlist = response;
-      const localdata = localStorage.getItem('registerUsers');
-      if(localdata!= null)
-      {
-        this.userlist =JSON.parse(localdata)
-      }
+      // const localdata = localStorage.getItem('registerUsers');
+      // if(localdata!= null)
+      // {
+      //   this.userlist =JSON.parse(localdata)
+      // }
   })
   }
 
@@ -41,20 +41,36 @@ export class LoginComponent implements OnInit {
   // }
 
   login() {
-    
+    debugger
     this.loginservice.login(this.userdata.Email, this.userdata.Password).subscribe(
       (response: any) => {
+        console.log(response)
         
-        if(response.message == "Login successful"){
+          const firstToken = response.tokendata[0];
+          const tokenvalue = firstToken.Token
+          const localstorage = localStorage.setItem('token', tokenvalue)
+          if(localstorage !== null)
+          {
+           if(response.message == "Login successful"){
           alert("login sucessfully")
           this.router.navigate(['/homepage']);
-        }
-        else{
-          alert("wrog credentials")
-        }
-        // Handle successful login, e.g., navigate to another page or set a user session.
+           }
+          else{
+          alert("wrong credentials")
+          }
       }
+      else{
+        alert("Token not found in the local storage");
+      }
+    }
+    // else{
+    //   alert("No token data found in the response");
+    // }
+    //}
       
     );
+  }
+  saveToken(token: string) {
+    localStorage.setItem('token', token);
   }
 }

@@ -10,6 +10,7 @@ import { LoginComponent } from './components/login/login/login.component';
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword/resetpassword.component';
 import { HomepageComponent } from './components/homepage/homepage/homepage.component';
+import { LogoutuserComponent } from './components/logoutuser/logoutuser.component';
 
 @NgModule({
   declarations: [
@@ -18,12 +19,18 @@ import { HomepageComponent } from './components/homepage/homepage/homepage.compo
     LoginComponent,
     ForgotpasswordComponent,
     ResetpasswordComponent,
-    HomepageComponent
+    HomepageComponent,
+    LogoutuserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,FormsModule
+    HttpClientModule,FormsModule,
+    // ToastrModule.forRoot({
+    //   timeOut: 3000, // Show the notification for 3 seconds
+    //   positionClass: 'toast-top-right', // Position of the notification
+    //   preventDuplicates: true, // Prevent duplicate notifications
+    // }),
   ],
   providers: [],
   bootstrap: [AppComponent]

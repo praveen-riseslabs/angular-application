@@ -2,6 +2,15 @@ from app import app
 import mysql.connector
 from flask import jsonify, abort
 from flask import request
+import jwt
+from datetime import datetime, timedelta
+from functools import wraps
+import secrets
+import string , pdb
+
+secret_key = ''.join(secrets.choice(string.ascii_letters + string.digits) for _ in range(32))
+app.config['SECRET_KEY'] = secret_key
+
 
 db = mysql.connector.connect(
     host="localhost",        # Replace with your MySQL host
@@ -14,6 +23,10 @@ try:
  print("connection successful")
 except:
  print("some error")
+
+def generate_token(email, password):
+    return jwt.encode({'email': email, 'password': password}, app.config['SECRET_KEY'], algorithm='HS256')
+
 
 @app.route("/getuser", methods=["GET"])
 def getuserdetails():
@@ -47,27 +60,65 @@ def registeruser():
     
 @app.route('/login' , methods =["POST"])
 def loginUser():
+    pdb.set_trace()
     try:
         _json = request.json
-        _email = _json['Email']
-        _password = _json['Password']
-
+        _email = _json.get('Email')
+        _password = _json.get('Password')
+        _token = _json.get('Token')
+        print(_email)
         if _email and _password and request.method == 'POST':
             # Query the database to check if the user with provided email and password exists
             select_query = "SELECT * FROM registration WHERE Email = %s AND Password = %s"
             values = (_email, _password)
             cur.execute(select_query, values)
             user = cur.fetchone()
-
+            print(user)
             if user:
-                return jsonify({'message': 'Login successful'}), 200
+                # token = generate_token(_email,_password)
+                _token = generate_token(_email, _password)
+                # Store the token in the usertoken table
+                insert_token_query = "INSERT INTO usertoken (UserId, Email, Token) VALUES (%s, %s, %s)"
+                insert_token_values = (user['UserID'], _email, _token)
+                cur.execute("BEGIN")  # Start a transaction
+                print(insert_token_values)
+                cur.execute(insert_token_query, insert_token_values)
+                db.commit()
+                cur.execute("SELECT * FROM usertoken")
+                userTokenData = cur.fetchall()
+                print(userTokenData)
+                return jsonify({'tokendata': userTokenData,
+                                'message': 'Login successful',
+                                }), 200
             else:
                 return jsonify({'message': 'Invalid credentials'}), 401
         else:
             return "Error while sending data"
     except Exception as e:
         print(e)
+        abort(500, description='Internal Server error')
+
+@app.route('/logout', methods=['PUT'])
+def logoutUser():
+    try:
+        # Retrieve the token from the request, e.g., in the request's JSON data
+        _json = request.json
+        _token = _json.get('Token')
+
+        if _token:
+            # Remove the token from the usertoken table to log the user out
+            delete_token_query = "DELETE FROM usertoken WHERE Token = %s"
+            cur.execute(delete_token_query, (_token,))
+            db.commit()
+
+            return jsonify({'message': 'Logout successful'}), 200
+        else:
+            return jsonify({'message': 'Invalid request. Token missing.'}), 400
+    except Exception as e:
+        print(e)
         abort(500, description='Internal server error')
+
+
 
 @app.route('/forgotpasswords', methods =["POST"])
 def checkEmailToForgotPassword():
