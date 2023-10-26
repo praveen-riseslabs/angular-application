@@ -24,6 +24,8 @@ export class ResetpasswordComponent implements OnInit {
       if(response!=null){
         alert("user data updated");
         this.router.navigate(['/login']);
+        localStorage.removeItem("userid")
+        localStorage.removeItem("token")
       }     
       // this.userlist.push(this.userdata);
       // localStorage.setItem('registerUsers', JSON.stringify(this.userlist))

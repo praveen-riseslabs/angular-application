@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./saveuserfriends.component.css']
 })
 export class SaveuserfriendsComponent implements OnInit {
+  userfrienddata:UserFriendsData = new UserFriendsData();
   userfriendlist:UserFriendsData[] = [];
   userlist:Userdata[] = [];
   currentuser : number;
@@ -17,10 +18,10 @@ export class SaveuserfriendsComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.saveuserfriendsdataservice.getUserData('http://127.0.0.1:5000/getuser').subscribe((response) => {
-      this.userlist = response;
+  //   this.saveuserfriendsdataservice.getUserData('http://127.0.0.1:5000/getuser').subscribe((response) => {
+  //     this.userlist = response;
       
-  })
+  // })
   
   }
 

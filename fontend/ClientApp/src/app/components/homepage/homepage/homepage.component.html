@@ -17,7 +17,8 @@
               <!-- <li><a class="waves-effect waves-light">Login<i class="material-icons right">account_box</i></a></li>
               <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Hello User<i class="material-icons right">arrow_drop_down</i></a></li> -->
               <li><a id="user-profile" class="dropdown-trigger"  data-target="dropdown1" (click)="toggleDropdown()"><i class="material-icons">Profile</i></a></li>
-
+              <li><a routerLink="/logout" >Logout</a></li>
+              <li><a routerLink="/resetpassword">Reset Password</a></li>
             </ul>
           </div>
         </div>
@@ -31,10 +32,10 @@
         <a href="#" >Dashboard</a>
       </li>
       <li class="bold">
-        <a href="#" class="waves-effect waves-light">Farms</a>
+        <a routerLink="/adduserfriends" class="waves-effect waves-light">Add Friends</a>
       </li>
       <li class="bold">
-        <a href="#" class="waves-effect waves-light">Cards</a>
+        <a routerLink="/userfriendslist" class="waves-effect waves-light">Get Friends</a>
       </li>
       <li class="bold">
         <a href="#" class="waves-effect waves-light">Charts</a>
@@ -63,8 +64,7 @@
         <!-- DASHBOARD -->
         
         <!-- END_DASHBOARD -->
-        <app-logoutuser></app-logoutuser>
-        <app-saveuserfriends></app-saveuserfriends>
+        <router-outlet></router-outlet>
       </div>
     </div>
   </main>

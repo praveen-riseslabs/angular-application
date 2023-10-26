@@ -7,6 +7,7 @@ import { ResetpasswordComponent } from './components/resetpassword/resetpassword
 import { HomepageComponent } from './components/homepage/homepage/homepage.component';
 import { LogoutuserComponent } from './components/logoutuser/logoutuser.component';
 import { UserfriendslistComponent } from './components/userfriendslist/userfriendslist/userfriendslist.component';
+import { SaveuserfriendsComponent } from './components/Saveuserfriends/saveuserfriends/saveuserfriends.component';
 
 const routes: Routes = [{
   path:"login", component:LoginComponent},
@@ -30,6 +31,9 @@ const routes: Routes = [{
   },
   {
     path: "userfriendslist", component:UserfriendslistComponent
+  },
+  {
+    path: "adduserfriends", component:SaveuserfriendsComponent
   }
 ];
 

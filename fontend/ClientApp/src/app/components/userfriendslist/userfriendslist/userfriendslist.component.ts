@@ -15,6 +15,7 @@ export class UserfriendslistComponent implements OnInit {
   constructor(private getAllFriendsListService : UserfriendslistService) { }
 
   ngOnInit() {
+    this.getAllFriendsList()
   }
 
   getAllFriendsList(){
