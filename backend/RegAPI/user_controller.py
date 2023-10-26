@@ -60,7 +60,7 @@ def registeruser():
     
 @app.route('/login' , methods =["POST"])
 def loginUser():
-    pdb.set_trace()
+    # pdb.set_trace()
     try:
         _json = request.json
         _email = _json.get('Email')
@@ -173,4 +173,51 @@ def update_user():
     except Exception as e:
         print(e)
         return "Internal Server Error", 500
-  
+    
+@app.route('/saveuserfriends' , methods =["POST"])
+def saveuserfriendsdetails():
+    # pdb.set_trace()
+    try:
+        _json = request.json
+        _userid = _json.get('UserID')
+        _friendname = _json.get('FriendName')
+        _city = _json.get('City')
+        _contact = _json.get('Contact')
+        _profession = _json.get('Profession')
+        print(_userid,_friendname,_city,_contact,_profession)
+        if _friendname and _city and _contact and _profession and request.method == 'POST':
+            
+            # Query the database to check if the user with provided email and password exists
+            insert_query = "INSERT INTO saveuserfriends (UserID,FriendName,City,Contact,Profession) VALUES (%s,%s, %s, %s, %s)"
+            values = (_userid,_friendname, _city, _contact, _profession)
+            cur.execute(insert_query, values)
+            db.commit()
+            response = {'message': 'User Friend Data Saved!', 'userid': _userid, 'friendname': _friendname,
+                        'city': _city, 'contact': _contact, 'profession': _profession}
+            return jsonify(response), 200
+        else:
+                return jsonify({'message': 'Invalid credentials'}), 401
+        
+    except Exception as e:
+        print(e)
+        abort(500, description='Internal Server error')
+
+@app.route('/userfriendslist', methods=['POST'])
+def GetUserFriendsList():
+    # pdb.set_trace()
+    try:
+        _json = request.json
+        _userid = _json.get('UserID')
+        print(_userid)
+        if _userid and request.method == 'POST':
+            get_query = "SELECT * FROM saveuserfriends WHERE UserID = %s"
+            cur.execute(get_query, (_userid,))
+            result = cur.fetchall()
+            db.commit()
+            print(result)
+            return jsonify(result), 200
+        else:
+            return jsonify({'message': 'User friends lists not found'}), 401  
+    except Exception as e:
+        print(e)
+        abort(500, description='Internal Server error')

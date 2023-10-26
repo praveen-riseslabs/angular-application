@@ -48,7 +48,11 @@ export class LoginComponent implements OnInit {
         
           const firstToken = response.tokendata[0];
           const tokenvalue = firstToken.Token
+          const userid = firstToken.UserID
           const localstorage = localStorage.setItem('token', tokenvalue)
+          if(userid){
+          const Userid = localStorage.setItem('userid', userid)
+          }
           if(localstorage !== null)
           {
            if(response.message == "Login successful"){

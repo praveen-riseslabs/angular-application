@@ -6,6 +6,7 @@ import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassw
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword/resetpassword.component';
 import { HomepageComponent } from './components/homepage/homepage/homepage.component';
 import { LogoutuserComponent } from './components/logoutuser/logoutuser.component';
+import { UserfriendslistComponent } from './components/userfriendslist/userfriendslist/userfriendslist.component';
 
 const routes: Routes = [{
   path:"login", component:LoginComponent},
@@ -26,6 +27,9 @@ const routes: Routes = [{
   },
   {
     path: "logout", component:LogoutuserComponent
+  },
+  {
+    path: "userfriendslist", component:UserfriendslistComponent
   }
 ];
 

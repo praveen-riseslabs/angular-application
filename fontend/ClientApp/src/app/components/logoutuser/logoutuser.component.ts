@@ -21,6 +21,7 @@ export class LogoutuserComponent implements OnInit {
         (response) => {
           // Handle successful logout
           localStorage.removeItem('token'); // Clear the token from local storage
+          localStorage.removeItem('userid');
           // Perform any other necessary cleanup or navigation
           this.router.navigate(['/login'])
         },

@@ -1,0 +1,20 @@
+<button class="btn waves-effect waves-teal" (click)="getAllFriendsList()">get</button>
+<table>
+    <thead>
+      <tr>
+          <th>Friend Name</th>
+          <th>City</th>
+          <th>Contact</th>
+          <th>Profession</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let Obj of userfriendslist">
+        <td>{{Obj.FriendName}}</td>
+        <td>{{Obj.City}}</td>
+        <td>{{Obj.Contact}}</td>
+        <td>{{Obj.Profession}}</td>
+      </tr>
+    </tbody>
+  </table>

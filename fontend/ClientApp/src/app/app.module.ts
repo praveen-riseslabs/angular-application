@@ -11,6 +11,8 @@ import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassw
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword/resetpassword.component';
 import { HomepageComponent } from './components/homepage/homepage/homepage.component';
 import { LogoutuserComponent } from './components/logoutuser/logoutuser.component';
+import { SaveuserfriendsComponent } from './components/Saveuserfriends/saveuserfriends/saveuserfriends.component';
+import { UserfriendslistComponent } from './components/userfriendslist/userfriendslist/userfriendslist.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { LogoutuserComponent } from './components/logoutuser/logoutuser.componen
     ForgotpasswordComponent,
     ResetpasswordComponent,
     HomepageComponent,
-    LogoutuserComponent
+    LogoutuserComponent,
+    SaveuserfriendsComponent,
+    UserfriendslistComponent
   ],
   imports: [
     BrowserModule,
