@@ -1,32 +1,24 @@
-
-<!-- NAVBAR -->
+<!-- 
   <header>
-    <!-- TOPNAV -->
-    <ul id="dropdown1" class="dropdown-content">
-      <li><a href="#!">Logout</a></li>
-      <li><a href="#!">Reset Password</a></li>
-    </ul>
+    
     <div class="navbar-fixed">
       <nav class="black darken-1">
         <div class="container">
           <div class="nav-wrapper">
-            <a href="#!" class="brand-logo">Title</a>
+            <a  class="brand-logo">Rises Labs</a>
             
             <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right">
-              <!-- <li><a class="waves-effect waves-light">Login<i class="material-icons right">account_box</i></a></li>
-              <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Hello User<i class="material-icons right">arrow_drop_down</i></a></li> -->
-              <li><a id="user-profile" class="dropdown-trigger"  data-target="dropdown1" (click)="toggleDropdown()"><i class="material-icons">Profile</i></a></li>
+              <li><a id="user-profile" class="dropdown-trigger"  data-target="dropdown1"><i class="material-icons-right">Profile</i></a></li>
               <li><a routerLink="/logout" >Logout</a></li>
               <li><a routerLink="/resetpassword">Reset Password</a></li>
             </ul>
+            
           </div>
         </div>
       </nav>
     </div>
-    <!-- END_TOPNAV -->
 
-    <!-- SIDEBAR -->
     <ul id="nav-mobile" class="sidenav sidenav-fixed" style="width: 200px;">
       <li class="bold">
         <a href="#" >Dashboard</a>
@@ -53,19 +45,64 @@
         <a href="#" class="waves-effect waves-light">Pages</a>
       </li>
     </ul>
-    <!-- END_SIDEBAR -->
-  </header>
-  <!-- END_NAVBAR -->
 
-  <!-- MAIN -->
+
+  </header>
+
   <main>
     <div class="container">
       <div class="row">
-        <!-- DASHBOARD -->
         
-        <!-- END_DASHBOARD -->
-        <router-outlet></router-outlet>
       </div>
     </div>
   </main>
-  <!-- END_MAIN -->
+   -->
+
+
+
+<header>
+   <nav class="top-nav">
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Rises Labs</a>
+  
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a id="user-profile" class="dropdown-trigger" data-target="dropdown1">
+          Profile<i class="material-icons right">account_circle</i></a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <ul id="nav-mobile" class="sidenav sidenav-fixed" style="width: 200px;">
+    <li class="bold">
+      <a href="#" >Dashboard</a>
+    </li>
+    <li class="bold">
+      <a routerLink="/adduserfriends" class="waves-effect waves-light">Add Friends</a>
+    </li>
+    <li class="bold">
+      <a routerLink="/userfriendslist" class="waves-effect waves-light">Get Friends</a>
+    </li>
+    <li class="bold">
+      <a href="#" class="waves-effect waves-light">Charts</a>
+    </li>
+    <li class="bold">
+      <a href="#" class="waves-effect waves-light">Buttons</a>
+    </li>
+    <li class="bold">
+      <a href="#" class="waves-effect waves-light">Models</a>
+    </li>
+    <li class="bold">
+      <a href="#" class="waves-effect waves-light">Tables</a>
+    </li>
+    <li class="bold">
+      <a href="#" class="waves-effect waves-light">Pages</a>
+    </li>
+  </ul>
+
+  <!-- Dropdown Structure -->
+  <ul id="dropdown1" class="dropdown-content">
+    <li><a href="#!">Profile Settings</a></li>
+    <li class="divider"></li>
+    <li><a href="#!">Logout</a></li>
+  </ul>
+</header>
