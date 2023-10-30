@@ -1,3 +1,11 @@
 .title-msg{
     text-align: center;
 }
+.container {
+    background: white;
+    padding: 20px 25px;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    position: relative;
+  }

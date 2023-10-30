@@ -1,63 +1,3 @@
-<!-- 
-  <header>
-    
-    <div class="navbar-fixed">
-      <nav class="black darken-1">
-        <div class="container">
-          <div class="nav-wrapper">
-            <a  class="brand-logo">Rises Labs</a>
-            
-            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <ul class="right">
-              <li><a id="user-profile" class="dropdown-trigger"  data-target="dropdown1"><i class="material-icons-right">Profile</i></a></li>
-              <li><a routerLink="/logout" >Logout</a></li>
-              <li><a routerLink="/resetpassword">Reset Password</a></li>
-            </ul>
-            
-          </div>
-        </div>
-      </nav>
-    </div>
-
-    <ul id="nav-mobile" class="sidenav sidenav-fixed" style="width: 200px;">
-      <li class="bold">
-        <a href="#" >Dashboard</a>
-      </li>
-      <li class="bold">
-        <a routerLink="/adduserfriends" class="waves-effect waves-light">Add Friends</a>
-      </li>
-      <li class="bold">
-        <a routerLink="/userfriendslist" class="waves-effect waves-light">Get Friends</a>
-      </li>
-      <li class="bold">
-        <a href="#" class="waves-effect waves-light">Charts</a>
-      </li>
-      <li class="bold">
-        <a href="#" class="waves-effect waves-light">Buttons</a>
-      </li>
-      <li class="bold">
-        <a href="#" class="waves-effect waves-light">Models</a>
-      </li>
-      <li class="bold">
-        <a href="#" class="waves-effect waves-light">Tables</a>
-      </li>
-      <li class="bold">
-        <a href="#" class="waves-effect waves-light">Pages</a>
-      </li>
-    </ul>
-
-
-  </header>
-
-  <main>
-    <div class="container">
-      <div class="row">
-        
-      </div>
-    </div>
-  </main>
-   -->
-
 
 
 <header>
@@ -77,10 +17,10 @@
       <a href="#" >Dashboard</a>
     </li>
     <li class="bold">
-      <a routerLink="/adduserfriends" class="waves-effect waves-light">Add Friends</a>
+      <a routerLink="/homepage/adduserfriends" class="waves-effect waves-light">Add Friends</a>
     </li>
     <li class="bold">
-      <a routerLink="/userfriendslist" class="waves-effect waves-light">Get Friends</a>
+      <a routerLink="/homepage/userfriendslist" class="waves-effect waves-light">Get Friends</a>
     </li>
     <li class="bold">
       <a href="#" class="waves-effect waves-light">Charts</a>
@@ -102,17 +42,16 @@
   <main>
     <div class="container">
       <div class="row">
-        <app-saveuserfriends></app-saveuserfriends>
+    <router-outlet></router-outlet>
 
       </div>
     </div>
-    <!-- <router-outlet></router-outlet> -->
 
   </main>
 
   <!-- Dropdown Structure -->
   <ul id="dropdown1" class="dropdown-content">
-    <li><a routerLink="/edituser">Edit Profile</a></li>
+    <li><a routerLink="/homepage/edituser">Edit Profile</a></li>
     <li class="divider"></li>
     <li><a (click)="logout()" >Logout</a></li>
   </ul>

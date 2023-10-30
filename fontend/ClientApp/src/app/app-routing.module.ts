@@ -9,9 +9,18 @@ import { LogoutuserComponent } from './components/logoutuser/logoutuser.componen
 import { UserfriendslistComponent } from './components/userfriendslist/userfriendslist/userfriendslist.component';
 import { SaveuserfriendsComponent } from './components/Saveuserfriends/saveuserfriends/saveuserfriends.component';
 import { EditProfileComponent } from './components/Editprofile/edit-profile/edit-profile.component';
-
+import { AdminModule } from './modules/admin/admin.module';
 const routes: Routes = [{
   path:"login", component:LoginComponent},
+  {
+    path: 'homepage',
+    component: HomepageComponent,
+    children: [
+      { path: 'adduserfriends', component: SaveuserfriendsComponent },
+      { path: 'edituser', component: EditProfileComponent},
+      { path: 'userfriendslist', component: UserfriendslistComponent}
+    ]
+  },
   {
     path:"", redirectTo:"/login", pathMatch: 'full'
   },
@@ -24,21 +33,27 @@ const routes: Routes = [{
   {
     path:"resetpassword", component:ResetpasswordComponent
   },
-  {
-    path:"homepage", component:HomepageComponent
-  },
+  // {
+  //   path:"homepage", component:HomepageComponent
+  // },
   {
     path: "logout", component:LogoutuserComponent
   },
-  {
-    path: "userfriendslist", component:UserfriendslistComponent
-  },
-  {
-    path: "adduserfriends", component:SaveuserfriendsComponent
-  },
-  {
-    path: "edituser", component:EditProfileComponent
-  }
+  // {
+  //   path: "userfriendslist", component:UserfriendslistComponent
+  // },
+  // {
+  //   path: "adduserfriends", component:SaveuserfriendsComponent
+  // },
+  // {
+  //   path: "edituser", component:EditProfileComponent
+  // },
+  // {
+  //   path: 'admin',
+  //   loadChildren: () =>
+  //     import('./modules/admin/admin.module').then((m) => m.AdminModule),
+  // },
+  
 ];
 
 @NgModule({

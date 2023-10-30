@@ -19,7 +19,6 @@ export class UserfriendslistComponent implements OnInit {
   }
 
   getAllFriendsList(){
-    debugger
     const currentUserId = localStorage.getItem('userid');
     if (!currentUserId) {
       alert('UserId not found in localStorage');
