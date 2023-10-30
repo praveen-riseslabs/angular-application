@@ -8,6 +8,7 @@ import { HomepageComponent } from './components/homepage/homepage/homepage.compo
 import { LogoutuserComponent } from './components/logoutuser/logoutuser.component';
 import { UserfriendslistComponent } from './components/userfriendslist/userfriendslist/userfriendslist.component';
 import { SaveuserfriendsComponent } from './components/Saveuserfriends/saveuserfriends/saveuserfriends.component';
+import { EditProfileComponent } from './components/Editprofile/edit-profile/edit-profile.component';
 
 const routes: Routes = [{
   path:"login", component:LoginComponent},
@@ -34,6 +35,9 @@ const routes: Routes = [{
   },
   {
     path: "adduserfriends", component:SaveuserfriendsComponent
+  },
+  {
+    path: "edituser", component:EditProfileComponent
   }
 ];
 

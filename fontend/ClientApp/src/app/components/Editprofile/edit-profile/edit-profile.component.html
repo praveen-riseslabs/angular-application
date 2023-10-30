@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <form class="col s12" id="reg-form">
+      <div class="=row">
+        <div class="title-msg">
+          <h4>UPDATE PROFILE</h4>
+        </div><br>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="first_name" type="text" name="first_name" [(ngModel)]="userdata.Firstname" required >
+          <label for="first_name">First Name</label>
+          <!-- <span *ngIf=" userdata.Firstname && !validateFields(userdata.Firstname)" class="red-text">First name should have only letters</span> -->
+        </div>  
+        <div class="input-field col s6">
+          <input id="last_name" type="text" name="last_name" [(ngModel)]="userdata.Lastname" required>
+          <label for="last_name">Last Name</label>
+          <!-- <span *ngIf=" userdata.Lastname && !validateFields(userdata.Lastname)" class="red-text">Last name should have only letters</span> -->
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" name="email" [(ngModel)]="userdata.Email" required>
+          <label for="email">Email</label>
+         <!-- <span *ngIf=" userdata.Email && !validateFields(userdata.Email)" class="red-text">Valid email should be enter</span> -->
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" type="password" name="password" [(ngModel)]="userdata.Password" required>
+          <label for="password">Password</label>
+          <!-- <span *ngIf=" userdata.Password && !validateFields(userdata.Password)" class="red-text">Enter strong password</span> -->
+        </div>
+      </div>
+      
+      <button class="btn waves-effect waves-teal" (click)="updateUserProfile()">UPDATE</button>
+    </form>
+  </div>
+
+
+
+   <!-- <table>
+    <thead>
+      <tr>
+        <th>SI.no</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Password</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let Obj of userlist">
+        <td>{{Obj.UserID}}</td>
+        <td>{{Obj.Firstname}}</td>
+        <td>{{Obj.Lastname}}</td>
+        <td>{{Obj.Email}}</td>
+        <td>{{Obj.Password}}</td>
+      </tr>
+    </tbody>
+  </table> -->
+</div> 

@@ -15,6 +15,7 @@ export class LogoutuserComponent implements OnInit {
   }
 
   logout() {
+    
     const token = localStorage.getItem('token'); // Retrieve the user's token from local storage
     if (token) {
       this.logoutUserService.logoutUser(token).subscribe(

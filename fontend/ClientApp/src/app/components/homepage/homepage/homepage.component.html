@@ -99,10 +99,21 @@
     </li>
   </ul>
 
+  <main>
+    <div class="container">
+      <div class="row">
+        <app-saveuserfriends></app-saveuserfriends>
+
+      </div>
+    </div>
+    <!-- <router-outlet></router-outlet> -->
+
+  </main>
+
   <!-- Dropdown Structure -->
   <ul id="dropdown1" class="dropdown-content">
-    <li><a href="#!">Profile Settings</a></li>
+    <li><a routerLink="/edituser">Edit Profile</a></li>
     <li class="divider"></li>
-    <li><a href="#!">Logout</a></li>
+    <li><a (click)="logout()" >Logout</a></li>
   </ul>
 </header>
