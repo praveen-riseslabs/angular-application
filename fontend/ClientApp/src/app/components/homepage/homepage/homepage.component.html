@@ -7,7 +7,7 @@
   
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a id="user-profile" class="dropdown-trigger" data-target="dropdown1">
-          Profile<i class="material-icons right">account_circle</i></a></li>
+         Welcome {{userdata.Firstname}}<i class="material-icons right">account_circle</i></a></li>
       </ul>
     </div>
   </nav>
@@ -52,6 +52,8 @@
   <!-- Dropdown Structure -->
   <ul id="dropdown1" class="dropdown-content">
     <li><a routerLink="/homepage/edituser">Edit Profile</a></li>
+    <li class="divider"></li>
+    <li><a (click)="logout()" >Reset Password</a></li>
     <li class="divider"></li>
     <li><a (click)="logout()" >Logout</a></li>
   </ul>

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Userdata } from 'src/app/models/Userdata';
 import { LoginService } from 'src/app/services/loginuser/login.service';
 import { UserdataserviceService } from 'src/app/services/registeruser/userdataservice.service';
-
+declare var M : any;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,7 +13,8 @@ export class LoginComponent implements OnInit {
 
   userdata: Userdata =  new Userdata();
   userlist :Userdata[] = [];
-  
+  message : string = "Login Succesfully"
+  duration :number = 3000;
   constructor(private userdataservice : UserdataserviceService, private loginservice : LoginService,
               private router : Router) { }
 
@@ -56,7 +57,7 @@ export class LoginComponent implements OnInit {
           if(localstorage !== null)
           {
            if(response.message == "Login successful"){
-          alert("login sucessfully")
+          M.toast({html: 'Login successfully', classes: 'rounded'});
           this.router.navigate(['/homepage']);
            }
           else{
@@ -77,4 +78,5 @@ export class LoginComponent implements OnInit {
   saveToken(token: string) {
     localStorage.setItem('token', token);
   }
+   
 }

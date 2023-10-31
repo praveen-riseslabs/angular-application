@@ -9,7 +9,6 @@ import { LogoutuserComponent } from './components/logoutuser/logoutuser.componen
 import { UserfriendslistComponent } from './components/userfriendslist/userfriendslist/userfriendslist.component';
 import { SaveuserfriendsComponent } from './components/Saveuserfriends/saveuserfriends/saveuserfriends.component';
 import { EditProfileComponent } from './components/Editprofile/edit-profile/edit-profile.component';
-import { AdminModule } from './modules/admin/admin.module';
 const routes: Routes = [{
   path:"login", component:LoginComponent},
   {

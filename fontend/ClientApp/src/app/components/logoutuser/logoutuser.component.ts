@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LogoutuserService } from 'src/app/services/logoutuser.service';
-
+declare var M : any;
 @Component({
   selector: 'app-logoutuser',
   templateUrl: './logoutuser.component.html',
@@ -23,6 +23,7 @@ export class LogoutuserComponent implements OnInit {
           // Handle successful logout
           localStorage.removeItem('token'); // Clear the token from local storage
           localStorage.removeItem('userid');
+          M.toast({html: 'Logout successfully', classes: 'rounded'});
           // Perform any other necessary cleanup or navigation
           this.router.navigate(['/login'])
         },

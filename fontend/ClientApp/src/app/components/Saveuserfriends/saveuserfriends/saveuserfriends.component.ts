@@ -3,7 +3,7 @@ import { UserFriendsData } from 'src/app/models/UserFriendsData';
 import { SaveuserfriendsdataService } from 'src/app/services/saveuserfriendsdata/saveuserfriendsdata.service';
 import { Userdata } from 'src/app/models/Userdata';
 import { ActivatedRoute } from '@angular/router';
-
+declare var M : any;
 @Component({
   selector: 'app-saveuserfriends',
   templateUrl: './saveuserfriends.component.html',
@@ -36,7 +36,7 @@ export class SaveuserfriendsComponent implements OnInit {
 
         this.saveuserfriendsdataservice.saveUserFriendData(this.userfrienddata).subscribe((response: any) => {
           if(response.message == "User Friend Data Saved!"){
-            alert("user friends data saved");
+            M.toast({html: 'User Friend Data Saved', classes: 'rounded'});
             this.ngOnInit()
             this.userfrienddata = new UserFriendsData();
           }     

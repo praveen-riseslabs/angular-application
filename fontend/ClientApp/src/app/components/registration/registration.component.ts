@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Userdata } from 'src/app/models/Userdata';
 import { UserdataserviceService } from 'src/app/services/registeruser/userdataservice.service';
+declare var M : any;
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -28,7 +29,7 @@ saveUserData() {
   debugger
   this.userdataservice.saveUserData(this.userdata).subscribe((response: any) => {
     if(response!=null){
-      alert("user data saved");
+      M.toast({html: 'Registration succesfull', classes: 'rounded'});
       this.ngOnInit()
       this.userdata = new Userdata();
     }     

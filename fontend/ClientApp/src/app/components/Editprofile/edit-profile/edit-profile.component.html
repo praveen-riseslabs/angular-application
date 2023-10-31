@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <form class="col s12" id="reg-form">
+    <form class="col s12" id="edit-form">
       <div class="=row">
         <div class="title-msg">
           <h4>UPDATE PROFILE</h4>
@@ -21,19 +21,38 @@
   
       <div class="row">
         <div class="input-field col s12">
-          <input id="email" type="email" name="email" [(ngModel)]="userdata.Email" required>
+          <input id="email" type="email" name="email" [(ngModel)]="userdata.Email" readonly>
           <label for="email">Email</label>
          <!-- <span *ngIf=" userdata.Email && !validateFields(userdata.Email)" class="red-text">Valid email should be enter</span> -->
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="password" type="password" name="password" [(ngModel)]="userdata.Password" required>
+          <input id="password" type="password" name="password" [(ngModel)]="userdata.Password" readonly>
           <label for="password">Password</label>
           <!-- <span *ngIf=" userdata.Password && !validateFields(userdata.Password)" class="red-text">Enter strong password</span> -->
         </div>
       </div>
-      
+
+      <div class="row">
+        <div class="input-field col s4">
+         <input id="age" type="number" name="age" [(ngModel)]="userdata.Age" required >
+         <label for="age">Age</label>
+        </div>
+
+        <div class="input-field col s8">
+          <input id="phonenumber" type="text" name="phonenumber" [(ngModel)]="userdata.Phonenumber" required >
+          <label for="phonenumber">Phone Number</label>
+       </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+        <!-- <i class="material-icons prefix">mode_edit</i> -->
+        <textarea id="address" class="materialize-textarea"  name="address" [(ngModel)]="userdata.Address" required></textarea>
+        <label for="address">Address</label>
+        </div>
+      </div>
+
       <button class="btn waves-effect waves-teal" (click)="updateUserProfile()">UPDATE</button>
     </form>
   </div>

@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 from functools import wraps
 import secrets
 import string , pdb
+from models.userdata import User
 
 secret_key = ''.join(secrets.choice(string.ascii_letters + string.digits) for _ in range(32))
 app.config['SECRET_KEY'] = secret_key
@@ -224,31 +225,47 @@ def GetUserFriendsList():
 
 @app.route('/updateuser/<int:user_id>', methods=['PUT'])
 def update_user(user_id):
+    # pdb.set_trace()
+    # print(user_id)
     try:
         _json = request.json
-        _firstname = _json.get('Firstname')
-        _lastname = _json.get('Lastname')
-        _email = _json.get('Email')
-        _password = _json.get('Password')
 
-        if _firstname and _lastname and _email and _password and request.method == 'PUT':
-            update_query = "UPDATE registration SET Firstname = %s, Lastname = %s, Email = %s, Password = %s WHERE UserID = %s"
-            values = (_firstname, _lastname, _email, _password, user_id)
-            cur = db.cursor()  # Establish a cursor
-            cur.execute(update_query, values)
-            db.commit()
-            
-            response = {
-                'message': 'Profile updated successfully!',
-                'firstname': _firstname,
-                'lastname': _lastname,
-                'email': _email,
-                'password': _password
-            }
-            return jsonify(response), 200  # 200 for successful update
-        else:
-            return "Error while sending data", 400  # 400 for bad request
+        if not _json:
+            return "No data received", 400
+
+        user_data = User.from_json(_json)
+
+        if not all([user_data.firstname, user_data.lastname, user_data.email, user_data.password,user_data.age
+                    ,user_data.phonenumber,user_data.address]):
+            return "Required fields are missing", 400
+
+        update_query = (
+            "UPDATE registration SET Firstname = %s, Lastname = %s, Email = %s, "
+            "Password = %s, Age = %s, Phonenumber = %s, Address = %s WHERE UserID = %s"
+        )
+        values = (
+            user_data.firstname,
+            user_data.lastname,
+            user_data.email,
+            user_data.password,
+            user_data.age,
+            user_data.phonenumber,
+            user_data.address,
+            user_id
+        )
+        cur.execute(update_query, values)
+        db.commit()
+
+        response = {
+            'message': 'Profile updated successfully!',
+            **user_data.to_dict()
+        }
+        return jsonify(response), 200  # 200 for successful update
+
+    except KeyError as e:
+        return f"Error: {e}. Please provide all required fields", 400  # 400 for bad request
+
     except Exception as e:
         print(e)
-        return "An error occurred while updating the profile", 500  # 500 for internal server error
+        return "An error occurred while updating the profile", 500
 
