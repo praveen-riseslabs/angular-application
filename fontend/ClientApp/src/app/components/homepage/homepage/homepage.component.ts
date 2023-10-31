@@ -4,6 +4,7 @@ import { LogoutuserService } from 'src/app/services/logoutuser.service';
 import { Router } from '@angular/router';
 import { Userdata } from 'src/app/models/Userdata';
 import { UserdataserviceService } from 'src/app/services/registeruser/userdataservice.service';
+import { ResetpasswordComponent } from '../../resetpassword/resetpassword/resetpassword.component';
 declare var M: any; 
 
 @Component({
@@ -15,10 +16,13 @@ declare var M: any;
 export class HomepageComponent implements OnInit, AfterViewInit {
   @ViewChild('userProfile') userProfile: ElementRef;
   @ViewChild('dropdown1') dropdown1: ElementRef;
+  @ViewChild(ResetpasswordComponent) resetPasswordComponent!: ResetpasswordComponent;
+
   userdata:Userdata = new Userdata();
   userlist:Userdata[] = [];
   UserId : number;
   Usertoken : string;
+  
   constructor(private renderer: Renderer2, private el: ElementRef,
     private logoutUserService : LogoutuserService, private router : Router, private userdataservice : UserdataserviceService) { }
 
@@ -32,9 +36,10 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     this.userdataservice.getUserData('http://127.0.0.1:5000/getuser').subscribe((response) => {
       this.userlist = response;
       this.userdata = this.userlist.find(a => a.UserID === this.UserId);
+      
     });
   }
-  
+
   logout() {
     debugger
     const token = localStorage.getItem('token'); // Retrieve the user's token from local storage
@@ -62,8 +67,13 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     M.Dropdown.init(dropdownTrigger, {
       constrainWidth: true 
     });
+
   }
 
+  // resetPassword(){
+  //   debugger
+  //   this.resetPasswordComponent.updatePassword()
+  // }
   
   
   

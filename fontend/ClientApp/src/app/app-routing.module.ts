@@ -17,7 +17,8 @@ const routes: Routes = [{
     children: [
       { path: 'adduserfriends', component: SaveuserfriendsComponent },
       { path: 'edituser', component: EditProfileComponent},
-      { path: 'userfriendslist', component: UserfriendslistComponent}
+      { path: 'userfriendslist', component: UserfriendslistComponent},
+      { path: 'resetpassword', component: ResetpasswordComponent}
     ]
   },
   {
@@ -29,29 +30,12 @@ const routes: Routes = [{
   {
     path: "forgotpassword", component: ForgotpasswordComponent
   },
-  {
-    path:"resetpassword", component:ResetpasswordComponent
-  },
   // {
-  //   path:"homepage", component:HomepageComponent
+  //   path:"forgotpassword", component:ResetpasswordComponent
   // },
   {
     path: "logout", component:LogoutuserComponent
   },
-  // {
-  //   path: "userfriendslist", component:UserfriendslistComponent
-  // },
-  // {
-  //   path: "adduserfriends", component:SaveuserfriendsComponent
-  // },
-  // {
-  //   path: "edituser", component:EditProfileComponent
-  // },
-  // {
-  //   path: 'admin',
-  //   loadChildren: () =>
-  //     import('./modules/admin/admin.module').then((m) => m.AdminModule),
-  // },
   
 ];
 

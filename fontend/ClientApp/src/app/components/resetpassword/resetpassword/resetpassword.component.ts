@@ -11,6 +11,8 @@ declare var M : any;
 })
 export class ResetpasswordComponent implements OnInit {
   userdata:Userdata = new Userdata();
+  confirmPassword : string = '';
+  passwordError:string = '';
   constructor( private route: ActivatedRoute, private resetpasswordservice : ResetpasswordService, private router : Router) { }
 
   ngOnInit() {
@@ -29,5 +31,17 @@ export class ResetpasswordComponent implements OnInit {
       // this.userlist.push(this.userdata);
       // localStorage.setItem('registerUsers', JSON.stringify(this.userlist))
     })
+  }
+  validateFields(value: string): boolean {
+    if(this.userdata.Password !==  undefined){
+      const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,16}$/; 
+      return regex.test(value);
+    }
+  }
+  validateConfirmPassword(){
+    this.passwordError = this.userdata.Password !== this.confirmPassword ? 'Passwords do not match' : '';
+  }
+  isFormValid(): boolean {
+    return this.userdata && this.confirmPassword && !this.passwordError;
   }
 }

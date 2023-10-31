@@ -27,7 +27,6 @@ export class EditProfileComponent implements OnInit {
   this.userdataservice.getUserData('http://127.0.0.1:5000/getuser').subscribe((response) => {
     this.userlist = response;
     this.userdata = this.userlist.find(a => a.UserID === this.UserId);
-    console.log(this.userdata);
   });
   }
 
