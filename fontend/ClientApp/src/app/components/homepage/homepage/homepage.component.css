@@ -1,16 +1,27 @@
 .dropdown-content {
     top: 65px !important;
   }
-  .sidenav {
-    padding-top: 18px;
-    min-height: 10px;
-    overflow-y: auto;
-    background-color:rgba(28, 66, 190, 0.856);
-  }
   .top-nav {
-    background-color:rgba(28, 66, 190, 0.856);
-
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(16, 27, 65, 0.856);
+    color: white; /* Adjust text color */
   }
+  
+  .sidenav {
+    position: fixed;
+    top: 65px; /* Adjust this value based on the height of your top navigation */
+    left: 0;
+    width: 200px;
+    
+    height: calc(100% - 65px); /* Adjust for the top navigation's height */
+    overflow-y: auto;
+    background-color: rgba(16, 27, 65, 0.856);
+    color: white; /* Adjust text color */
+  }
+  
   .sidenav li a{
     color: white;
   }
@@ -31,6 +42,7 @@
     }
     main {
       padding-left: 250px;
+      padding-top: 65px;
     }
     main .container {
       width: 100%;
