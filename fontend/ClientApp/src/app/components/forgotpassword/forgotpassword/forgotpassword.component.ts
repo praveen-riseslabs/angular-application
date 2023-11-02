@@ -60,10 +60,11 @@ export class ForgotpasswordComponent implements OnInit {
       (data: any) => {
         this.emailData = data.email_data.Email;
         if (this.userlist.find(e => e.Email === this.emailData)) {
-          const navigationExtras: NavigationExtras = {
-            replaceUrl: true, // Clears the current URL
-          };
-          this.router.navigate(['/resetpassword', { email: this.emailData }], navigationExtras);
+          alert("Reset password link has been sent to your mail")
+          // const navigationExtras: NavigationExtras = {
+          //   replaceUrl: true, // Clears the current URL
+          // };
+          // this.router.navigate(['/resetpassword', { email: this.emailData }], navigationExtras);
         } else {
           alert("Email does not exist");
         }

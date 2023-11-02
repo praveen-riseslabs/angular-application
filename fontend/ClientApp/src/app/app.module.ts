@@ -14,6 +14,7 @@ import { LogoutuserComponent } from './components/logoutuser/logoutuser.componen
 import { SaveuserfriendsComponent } from './components/Saveuserfriends/saveuserfriends/saveuserfriends.component';
 import { UserfriendslistComponent } from './components/userfriendslist/userfriendslist/userfriendslist.component';
 import { EditProfileComponent } from './components/Editprofile/edit-profile/edit-profile.component';
+import { UpdatepasswordComponent } from './components/Updatepassword/updatepassword/updatepassword.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { EditProfileComponent } from './components/Editprofile/edit-profile/edit
     LogoutuserComponent,
     SaveuserfriendsComponent,
     UserfriendslistComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    UpdatepasswordComponent
   ],
   imports: [
     BrowserModule,

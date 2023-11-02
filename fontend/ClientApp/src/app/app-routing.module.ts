@@ -9,6 +9,7 @@ import { LogoutuserComponent } from './components/logoutuser/logoutuser.componen
 import { UserfriendslistComponent } from './components/userfriendslist/userfriendslist/userfriendslist.component';
 import { SaveuserfriendsComponent } from './components/Saveuserfriends/saveuserfriends/saveuserfriends.component';
 import { EditProfileComponent } from './components/Editprofile/edit-profile/edit-profile.component';
+import { UpdatepasswordComponent } from './components/Updatepassword/updatepassword/updatepassword.component';
 const routes: Routes = [{
   path:"login", component:LoginComponent},
   {
@@ -36,6 +37,9 @@ const routes: Routes = [{
   {
     path: "logout", component:LogoutuserComponent
   },
+  {
+    path: "updatepassword", component:UpdatepasswordComponent
+  }
   
 ];
 
