@@ -326,10 +326,11 @@ def reset_password_with_token():
       user_token = cur.fetchone()
 
       if user_token:
+        hashed_password = bcrypt.hashpw(new_password.encode('utf-8'), bcrypt.gensalt())
         # Token exists, update the user's password in the 'registration' table
         update_query = "UPDATE registration SET Password = %s WHERE UserID = %s"
         # Assuming you've stored the user ID associated with the token
-        values = (new_password, user_token['UserID'])
+        values = (hashed_password, user_token['UserID'])
         cur.execute(update_query, values)
         db.commit()
         # token_data = {

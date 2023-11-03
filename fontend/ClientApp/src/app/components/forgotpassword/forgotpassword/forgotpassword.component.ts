@@ -4,7 +4,7 @@ import { Userdata } from 'src/app/models/Userdata';
 import { ForgotpasswordService } from 'src/app/services/forgotpassword/forgotpassword.service';
 import { UserdataserviceService } from 'src/app/services/registeruser/userdataservice.service';
 // import { ToasterService } from 'src/app/services/toastr/toaster.service';
-
+declare var M : any
 @Component({
   selector: 'app-forgotpassword',
   templateUrl: './forgotpassword.component.html',
@@ -23,44 +23,13 @@ export class ForgotpasswordComponent implements OnInit {
   })
   }
 
-  // gToResetPassword() {
-  //   debugger
-  //   this.forgotpasswordservice.goToResetPassword(this.userdata.Email).subscribe(
-  //     (response: any) => {
-  //         if (response.exists) {
-  //           // Email exists in the database, navigate to another page
-  //           this.router.navigate(['/resetpassword']);
-  //         } else {
-  //           alert("Email doest not exist")
-  //         }
-  //       },
-        
-  //     );
-  // }
-
-  // checkEmailAvailability() {
-  //   debugger
-  //   this.forgotpasswordservice.chaeckEmail(this.userdata.Email).subscribe(
-  //     (data: any) => {
-  //       this.emailData = data.email_data.Email;
-  //       if(this.userlist.find(e =>e.Email == this.emailData))
-  //       {
-  //        this.router.navigate(['/resetpassword', {email:this.emailData}]);
-  //       }
-  //       else{
-  //         alert("Email does not exist")
-  //       }
-  //     },
-  //   );
-  // }
-
   checkEmailAvailability() {
     debugger
     this.forgotpasswordservice.checkEmail(this.userdata.Email).subscribe(
       (data: any) => {
         this.emailData = data.email_data.Email;
         if (this.userlist.find(e => e.Email === this.emailData)) {
-          alert("Reset password link has been sent to your mail")
+          M.toast({html: 'Message sent to mail for Reset Password', classes: 'rounded'});
           // const navigationExtras: NavigationExtras = {
           //   replaceUrl: true, // Clears the current URL
           // };

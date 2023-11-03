@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Userdata } from 'src/app/models/Userdata';
 import { UpdatepasswordService } from 'src/app/services/updatepassword/updatepassword.service';
+declare var M : any
 @Component({
   selector: 'app-updatepassword',
   templateUrl: './updatepassword.component.html',
@@ -20,7 +21,6 @@ export class UpdatepasswordComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.token = params['token'];
-      // You might want to validate the token or handle expiration here
     });
   }
 
@@ -29,9 +29,8 @@ export class UpdatepasswordComponent implements OnInit {
       .subscribe(response => {
         if(this.tokenFromApi = response.token)
         {
-          alert("password updated")
-        // Handle response from the API
-        // For example, show success message, navigate to login, etc.
+          M.toast({html: 'Password Updated Successfully', classes: 'rounded'});
+        
           this.router.navigate(['/login']);
         }
         else{

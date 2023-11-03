@@ -29,18 +29,7 @@ export class LoginComponent implements OnInit {
   })
   }
 
-  // loginUser(){
-  //   const isUserExist = this.userlist.find(user =>user.Email ===  this.userdata.Email && user.Password == this.userdata.Password );
-  // if(isUserExist != undefined)
-
-  // {
-  //   alert("logged in successfully")
-  // }
-  // else{
-  //   alert("wrong  credentials")
-  // }
-  // }
-
+  
   login() {
     debugger
     this.loginservice.login(this.userdata.Email, this.userdata.Password).subscribe(
@@ -75,8 +64,6 @@ export class LoginComponent implements OnInit {
       
     );
   }
-  saveToken(token: string) {
-    localStorage.setItem('token', token);
-  }
+  
    
 }
