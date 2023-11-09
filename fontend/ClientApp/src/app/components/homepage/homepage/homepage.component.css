@@ -1,6 +1,6 @@
 @media screen and (max-width: 600px) {
   .sidenav {
-    top:auto;
+    top:auto ;
     width: 180px;
     overflow-y: visible;
     background-color: rgba(20, 29, 24, 0.651);
@@ -13,14 +13,24 @@
     width: 150px;
     padding-top: 15px;
   }
-  
+  .sidenav li a{
+    color: white;
+  }
+  .dropdown-content{
+    top:auto;
+    overflow-y: visible;
+    background-color: rgba(20, 29, 24, 0.651);
+  }
+  .dropdown-content li a{
+    color: white;
+  }
   
 }
 
 @media screen and (min-width: 601px) and (max-width: 991px) {
   .sidenav {
     width: 200px;
-    top:auto; 
+    top:auto ; 
     background-color: rgba(20, 29, 24, 0.651);
   }
   .image-size{
@@ -28,6 +38,17 @@
   }
   .top-nav{
     background-color: rgba(20, 29, 24, 0.651);
+  }
+  .sidenav li a{
+    color: white;
+  }
+  .dropdown-content{
+    top:auto;
+    overflow-y: visible;
+    background-color: rgba(20, 29, 24, 0.651);
+  }
+  .dropdown-content li a{
+    color: white;
   }
   main .row{
     padding-left: 200px;
@@ -45,23 +66,22 @@
     height: 70px;
     background-color: rgba(20, 29, 24, 0.651);
   }
-  
+  .sidenav li a{
+    color: white;
+  }
+  .dropdown-content{
+    top:auto;
+    overflow-y: visible;
+    background-color: rgba(20, 29, 24, 0.651);
+  }
+  .dropdown-content li a{
+    color: white;
+  }
   main .row{
     padding-left: 250px;
   }
 }
 
-.sidenav li a{
-  color: white;
-}
-.dropdown-content{
-  top:auto !important;
-  overflow-y: visible;
-  background-color: rgba(20, 29, 24, 0.651);
-}
-.dropdown-content li a{
-  color: white;
-}
 
 
 

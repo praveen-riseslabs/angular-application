@@ -1,27 +1,26 @@
 <div class="container">
 
 <div class="row">
-    <div class="row">
+  <form class="col s12">
+    <div class="=row">
       <div class="title-msg">
         <h4>ADD FRIEND</h4>
         
       </div><br>
     </div>
     <div class="row">
-      <div class="col s12 l4 m6">
-       <div class="input-field">
+      <div class="input-field col s6">
         <input id="friend_name" name="friend_name" type="text" [(ngModel)]="userfrienddata.FriendName" class="validate">
         <label for="friend_name">Friend Name</label>
-       </div>
       </div>
-      <div class="col s12 l4 m6">
-       <div class="input-field">
+      <div class="input-field col s6">
         <input id="city" type="text" name="city" class="validate" [(ngModel)]="userfrienddata.City">
         <label for="city">City</label>
-       </div>
       </div>
-      <div class="col s12 l4 m6">
-       <div class="input-field">
+    </div>
+    
+    <div class="row">
+      <div class="input-field col s6">
         <input id="contact" type="number" name="contact" class="validate" [(ngModel)]="userfrienddata.Contact">
         <label for="contact">Contact</label>
        </div>
@@ -32,11 +31,7 @@
         <label for="profession">Profession</label>
       </div>
     </div>
-  </div>
-
-    <div class="row">
-    <div class="col s12">
     <button class="btn waves-effect waves-teal" (click)="saveUserFriendData()">Save</button>
-    </div>
-  </div>
+  </form>
+</div>
 </div>
