@@ -13,17 +13,20 @@
     width: 150px;
     padding-top: 15px;
   }
+<<<<<<< HEAD
+  
+=======
   .sidenav li a{
     color: white;
   }
   .dropdown-content{
-    top:auto;
     overflow-y: visible;
     background-color: rgba(20, 29, 24, 0.651);
   }
   .dropdown-content li a{
     color: white;
   }
+>>>>>>> 9963a2b924de61673fbe041ba240a01c09e79930
   
 }
 
@@ -39,17 +42,16 @@
   .top-nav{
     background-color: rgba(20, 29, 24, 0.651);
   }
+<<<<<<< HEAD
+=======
   .sidenav li a{
     color: white;
   }
-  .dropdown-content{
-    top:auto;
-    overflow-y: visible;
-    background-color: rgba(20, 29, 24, 0.651);
-  }
+  
   .dropdown-content li a{
     color: white;
   }
+>>>>>>> 9963a2b924de61673fbe041ba240a01c09e79930
   main .row{
     padding-left: 200px;
   }
@@ -66,23 +68,30 @@
     height: 70px;
     background-color: rgba(20, 29, 24, 0.651);
   }
-  .sidenav li a{
-    color: white;
-  }
-  .dropdown-content{
-    top:auto;
-    overflow-y: visible;
-    background-color: rgba(20, 29, 24, 0.651);
-  }
-  .dropdown-content li a{
-    color: white;
-  }
+  
   main .row{
     padding-left: 250px;
   }
 }
 
+<<<<<<< HEAD
+.sidenav li a{
+  color: white;
+}
+=======
+>>>>>>> 9963a2b924de61673fbe041ba240a01c09e79930
+.dropdown-content{
+  top:auto !important;
+  overflow-y: visible;
+  background-color: rgba(20, 29, 24, 0.651);
+}
+<<<<<<< HEAD
+.dropdown-content li a{
+  color: white;
+}
 
+=======
+>>>>>>> 9963a2b924de61673fbe041ba240a01c09e79930
 
 
 
