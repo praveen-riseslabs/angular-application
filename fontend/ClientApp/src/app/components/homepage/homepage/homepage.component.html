@@ -1,58 +1,113 @@
+<!-- <div class="row">
+  <div class="col s12 l4 m6">1</div>
+  <div class="col s12 l4 m6">2</div>
+  <div class="col s12 l4 m6">3</div>
+  <div class="col s12 l4 m6">4</div>
+  <div class="col s12 l4 m6">5</div>
+  <div class="col s12 l4 m6">6</div>
+  <div class="col s12 l4 m6">7</div>
+  <div class="col s12 l4 m6">8</div>
+  <div class="col s12 l4 m6">9</div>
+  <div class="col s12 l4 m6">10</div>
+  <div class="col s12 l4 m6">11</div>
+  <div class="col s12 l4 m6">12</div>
+</div> -->
+
+<!-- <nav>
+ <div class="top-nav">
+  <div class="nav-wrapper">
+    <img  class="image-size" src="//img1.wsimg.com/isteam/ip/80178cfe-5154-4320-91d7-c31e5956d3dd/logo3-d072c94.png/:/rs=h:59,cg:true,m/qt=q:100/ll">
+     <a data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+     <ul id="nav-mobile" class="right">
+      <li><a id="user-profile" class="dropdown-trigger" data-target="dropdown1">
+       Welcome {{userdata.Firstname}}<i class="material-icons right">account_circle</i>
+      <i class="material-icons right">arrow_drop_down</i></a></li>
+     </ul>
+    </div>
+   </div>
+</nav> -->
+
+<!-- <ul id="nav-mobile" class="sidenav"> -->
+  <!-- <li><div class="user-view">
+    <div class="background">
+      <img src="images/office.jpg">
+    </div>
+    <a href="#user"><img class="circle" src="images/yuna.jpg"></a>
+    <a href="#name"><span class="white-text name">John Doe</span></a>
+    <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+  </div></li> -->
+  <!-- <li><a href="#!">First Link</a></li>
+  <li><div class="divider"></div></li>
+  <li><a href="#!">Second Link</a></li>
+  <li><div class="divider"></div></li>
+  <li><a href="#!">Third Link </a></li>
+</ul> -->
+
+
+
 <header>
-   <nav class="top-nav">
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Rises Labs</a>
+  <nav class="top-nav">
+   <div class="nav-wrapper">
+     <!-- <a href="#" class="brand-logo">Rises Labs</a>  -->
+ <img  class="image-size" src="//img1.wsimg.com/isteam/ip/80178cfe-5154-4320-91d7-c31e5956d3dd/logo3-d072c94.png/:/rs=h:59,cg:true,m/qt=q:100/ll">
+ <a data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+ <ul id="nav-items" class="right">
+       <li><a id="user-profile" class="dropdown-trigger" data-target="dropdown1">
+        Welcome {{userdata.Firstname}}<i class="material-icons right">account_circle</i></a></li>
+     </ul>
+   </div>
+  </nav>
+ 
   
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a id="user-profile" class="dropdown-trigger" data-target="dropdown1">
-         Welcome {{userdata.Firstname}}<i class="material-icons right">account_circle</i></a></li>
-      </ul>
+   <div class="row">
+  <div class="">
+  <div class="col s12 m4 l3">
+ <ul id="nav-mobile" class="sidenav sidenav-fixed">
+   <li class="bold">
+     <a href="#" >Dashboard</a>
+   </li>
+   <li class="bold">
+     <a routerLink="/homepage/adduserfriends" class="waves-effect waves-light">Add Friends</a>
+   </li>
+   <li class="bold">
+     <a routerLink="/homepage/userfriendslist" class="waves-effect waves-light">Get Friends</a>
+   </li>
+   <li class="bold">
+     <a href="#" class="waves-effect waves-light">Charts</a>
+   </li>
+   <li class="bold">
+     <a href="#" class="waves-effect waves-light">Buttons</a>
+   </li>
+   <li class="bold">
+     <a href="#" class="waves-effect waves-light">Models</a>
+   </li>
+   
+ </ul>
+  </div>
+ </div>
+</div>
+
+
+ <main>
+   <div class="row">
+   <div class="col s12 m8 l9"> 
+   <!-- <div class="container">
+     <div class="row"> -->
+
+   <router-outlet></router-outlet>
+
+     <!-- </div>
+   </div> -->
     </div>
-   </nav>
-  
-  <ul id="nav-mobile" class="sidenav sidenav-fixed" style="width: 200px;">
-    <li class="bold">
-      <a href="#" >Dashboard</a>
-    </li>
-    <li class="bold">
-      <a routerLink="/homepage/adduserfriends" class="waves-effect waves-light">Add Friends</a>
-    </li>
-    <li class="bold">
-      <a routerLink="/homepage/userfriendslist" class="waves-effect waves-light">Get Friends</a>
-    </li>
-    <li class="bold">
-      <a href="#" class="waves-effect waves-light">Charts</a>
-    </li>
-    <li class="bold">
-      <a href="#" class="waves-effect waves-light">Buttons</a>
-    </li>
-    <li class="bold">
-      <a href="#" class="waves-effect waves-light">Models</a>
-    </li>
-    <li class="bold">
-      <a href="#" class="waves-effect waves-light">Tables</a>
-    </li>
-    <li class="bold">
-      <a href="#" class="waves-effect waves-light">Pages</a>
-    </li>
-  </ul>
-
-  <main>
-    <div class="container">
-      <div class="row">
-    <router-outlet></router-outlet>
-
-      </div>
-    </div>
-
-  </main>
-
-  <!-- Dropdown Structure -->
-  <ul id="dropdown1" class="dropdown-content">
-    <li><a routerLink="/homepage/edituser">Edit Profile</a></li>
-    <li class="divider"></li>
-    <li><a  [routerLink]="['/homepage/resetpassword', { email: userdata.Email}]" >Reset Password</a></li>
-    <li class="divider"></li>
-    <li><a (click)="logout()" >Logout</a></li>
-  </ul>
+ </div>
+ </main>
 </header>
+
+<ul id="dropdown1" class="dropdown-content">
+  <li><a routerLink="/homepage/edituser">Edit Profile</a></li>
+  <li class="divider"></li>
+  <li><a  [routerLink]="['/homepage/resetpassword', { email: userdata.Email}]" >Reset Password</a></li>
+  <li class="divider"></li>
+  <li><a (click)="logout()" >Logout</a></li>
+</ul>

@@ -10,7 +10,7 @@
       </div>
       <div class="row">
         <div class="input-field col s6">
-          <input id="first_name" type="text" name="first_name" [(ngModel)]="userdata.Firstname" required >
+          <input id="first_name" type="text" name="first_name" [(ngModel)]="userdata.Firstname" required [placeholder]="">
           <label for="first_name">First Name</label>
           <span *ngIf=" userdata.Firstname && !validateFields(userdata.Firstname)" class="red-text">First name should have only letters</span>
         </div>  

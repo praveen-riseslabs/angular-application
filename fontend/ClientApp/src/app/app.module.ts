@@ -15,6 +15,7 @@ import { SaveuserfriendsComponent } from './components/Saveuserfriends/saveuserf
 import { UserfriendslistComponent } from './components/userfriendslist/userfriendslist/userfriendslist.component';
 import { EditProfileComponent } from './components/Editprofile/edit-profile/edit-profile.component';
 import { UpdatepasswordComponent } from './components/Updatepassword/updatepassword/updatepassword.component';
+import { DashboardComponent } from './components/Dashboard/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { UpdatepasswordComponent } from './components/Updatepassword/updatepassw
     SaveuserfriendsComponent,
     UserfriendslistComponent,
     EditProfileComponent,
-    UpdatepasswordComponent
+    UpdatepasswordComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

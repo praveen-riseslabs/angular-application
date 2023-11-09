@@ -6,3 +6,6 @@
     box-sizing: border-box;
     position: relative;
   }
+  th {
+    padding: 15px; /* Adjust the padding value as needed */
+}

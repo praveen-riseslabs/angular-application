@@ -1,56 +1,98 @@
-.dropdown-content {
-    top: 65px !important;
-  }
-  .top-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    background-color: rgba(16, 27, 65, 0.856);
-    color: white; /* Adjust text color */
-  }
-  
+@media screen and (max-width: 600px) {
   .sidenav {
-    position: fixed;
-    top: 65px; /* Adjust this value based on the height of your top navigation */
-    left: 0;
-    width: 200px;
-    
-    height: calc(100% - 65px); /* Adjust for the top navigation's height */
-    overflow-y: auto;
-    background-color: rgba(16, 27, 65, 0.856);
-    color: white; /* Adjust text color */
+    top:auto;
+    width: 180px;
+    overflow-y: visible;
+    background-color: rgba(20, 29, 24, 0.651);
   }
-  
+  .top-nav{
+    background-color: rgba(20, 29, 24, 0.651);
+    
+  }
+  .image-size{
+    width: 150px;
+    padding-top: 15px;
+  }
   .sidenav li a{
     color: white;
   }
-  .row {
-    padding-top: 30px
+  .dropdown-content{
+    top:auto;
+    overflow-y: visible;
+    background-color: rgba(20, 29, 24, 0.651);
+  }
+  .dropdown-content li a{
+    color: white;
   }
   
-  
-  @media only screen and (min-width: 993px) {
-    /* header {
-      padding-left: 300px;
-    } */
-    .sidenav {
-      top: 65px !important;
-    }
-    .container {
-      width: 100%;
-    }
-    main {
-      padding-left: 250px;
-      padding-top: 65px;
-    }
-    main .container {
-      width: 100%;
-      max-width:1500px;
-    }
-    
-  }
+}
 
-/* CALENDAR */
+@media screen and (min-width: 601px) and (max-width: 991px) {
+  .sidenav {
+    width: 200px;
+    top:auto; 
+    background-color: rgba(20, 29, 24, 0.651);
+  }
+  .image-size{
+    width: 260px;
+  }
+  .top-nav{
+    background-color: rgba(20, 29, 24, 0.651);
+  }
+  .sidenav li a{
+    color: white;
+  }
+  .dropdown-content{
+    top:auto;
+    overflow-y: visible;
+    background-color: rgba(20, 29, 24, 0.651);
+  }
+  .dropdown-content li a{
+    color: white;
+  }
+  main .row{
+    padding-left: 200px;
+  }
+  
+} 
+
+@media screen and (min-width: 992px){
+  .sidenav {
+    width: 250px;
+    top:auto; 
+    background-color: rgba(20, 29, 24, 0.651);
+  }
+   .top-nav {
+    height: 70px;
+    background-color: rgba(20, 29, 24, 0.651);
+  }
+  .sidenav li a{
+    color: white;
+  }
+  .dropdown-content{
+    top:auto;
+    overflow-y: visible;
+    background-color: rgba(20, 29, 24, 0.651);
+  }
+  .dropdown-content li a{
+    color: white;
+  }
+  main .row{
+    padding-left: 250px;
+  }
+}
+
+
+
+
+
+
+
+/* @media screen and (min-width: 768px) and (max-width: 991px){
+ main .container{
+  padding-left: 150px;
+  grid-auto-columns: auto;
+ }
+} */
 
 

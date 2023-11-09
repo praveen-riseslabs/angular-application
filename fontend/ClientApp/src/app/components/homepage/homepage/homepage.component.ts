@@ -67,6 +67,15 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     M.Dropdown.init(dropdownTrigger, {
       constrainWidth: true 
     });
+    const sideNavTrigger = this.el.nativeElement.querySelector('.sidenav-trigger');
+    const sideNav = this.el.nativeElement.querySelector('.sidenav');
+    M.Sidenav.init(sideNav, {});
+
+    // Trigger side navigation on click of the sidenav-trigger
+    sideNavTrigger.addEventListener('click', () => {
+      const sideNavInstance = M.Sidenav.getInstance(sideNav);
+      sideNavInstance.open();
+    });
 
   }
 
