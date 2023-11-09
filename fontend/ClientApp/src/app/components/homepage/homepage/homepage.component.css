@@ -13,17 +13,7 @@
     width: 150px;
     padding-top: 15px;
   }
-  .sidenav li a{
-    color: white;
-  }
-  .dropdown-content{
-    top:auto;
-    overflow-y: visible;
-    background-color: rgba(20, 29, 24, 0.651);
-  }
-  .dropdown-content li a{
-    color: white;
-  }
+  
   
 }
 
@@ -38,17 +28,6 @@
   }
   .top-nav{
     background-color: rgba(20, 29, 24, 0.651);
-  }
-  .sidenav li a{
-    color: white;
-  }
-  .dropdown-content{
-    top:auto;
-    overflow-y: visible;
-    background-color: rgba(20, 29, 24, 0.651);
-  }
-  .dropdown-content li a{
-    color: white;
   }
   main .row{
     padding-left: 200px;
@@ -66,22 +45,23 @@
     height: 70px;
     background-color: rgba(20, 29, 24, 0.651);
   }
-  .sidenav li a{
-    color: white;
-  }
-  .dropdown-content{
-    top:auto;
-    overflow-y: visible;
-    background-color: rgba(20, 29, 24, 0.651);
-  }
-  .dropdown-content li a{
-    color: white;
-  }
+  
   main .row{
     padding-left: 250px;
   }
 }
 
+.sidenav li a{
+  color: white;
+}
+.dropdown-content{
+  top:auto !important;
+  overflow-y: visible;
+  background-color: rgba(20, 29, 24, 0.651);
+}
+.dropdown-content li a{
+  color: white;
+}
 
 
 
