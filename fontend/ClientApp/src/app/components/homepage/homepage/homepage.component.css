@@ -1,6 +1,6 @@
 @media screen and (max-width: 600px) {
   .sidenav {
-    top:auto;
+    top:auto ;
     width: 180px;
     overflow-y: visible;
     background-color: rgba(20, 29, 24, 0.651);
@@ -17,7 +17,6 @@
     color: white;
   }
   .dropdown-content{
-    top:auto;
     overflow-y: visible;
     background-color: rgba(20, 29, 24, 0.651);
   }
@@ -30,7 +29,7 @@
 @media screen and (min-width: 601px) and (max-width: 991px) {
   .sidenav {
     width: 200px;
-    top:auto; 
+    top:auto ; 
     background-color: rgba(20, 29, 24, 0.651);
   }
   .image-size{
@@ -42,11 +41,7 @@
   .sidenav li a{
     color: white;
   }
-  .dropdown-content{
-    top:auto;
-    overflow-y: visible;
-    background-color: rgba(20, 29, 24, 0.651);
-  }
+  
   .dropdown-content li a{
     color: white;
   }
@@ -82,7 +77,11 @@
   }
 }
 
-
+.dropdown-content{
+  top:auto !important;
+  overflow-y: visible;
+  background-color: rgba(20, 29, 24, 0.651);
+}
 
 
 
