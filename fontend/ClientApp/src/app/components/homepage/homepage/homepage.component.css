@@ -1,6 +1,6 @@
 @media screen and (max-width: 600px) {
   .sidenav {
-    top:auto ;
+    top:auto;
     width: 180px;
     overflow-y: visible;
     background-color: rgba(20, 29, 24, 0.651);
@@ -13,27 +13,14 @@
     width: 150px;
     padding-top: 15px;
   }
-<<<<<<< HEAD
   
-=======
-  .sidenav li a{
-    color: white;
-  }
-  .dropdown-content{
-    overflow-y: visible;
-    background-color: rgba(20, 29, 24, 0.651);
-  }
-  .dropdown-content li a{
-    color: white;
-  }
->>>>>>> 9963a2b924de61673fbe041ba240a01c09e79930
   
 }
 
 @media screen and (min-width: 601px) and (max-width: 991px) {
   .sidenav {
     width: 200px;
-    top:auto ; 
+    top:auto; 
     background-color: rgba(20, 29, 24, 0.651);
   }
   .image-size{
@@ -42,16 +29,6 @@
   .top-nav{
     background-color: rgba(20, 29, 24, 0.651);
   }
-<<<<<<< HEAD
-=======
-  .sidenav li a{
-    color: white;
-  }
-  
-  .dropdown-content li a{
-    color: white;
-  }
->>>>>>> 9963a2b924de61673fbe041ba240a01c09e79930
   main .row{
     padding-left: 200px;
   }
@@ -74,24 +51,18 @@
   }
 }
 
-<<<<<<< HEAD
 .sidenav li a{
   color: white;
 }
-=======
->>>>>>> 9963a2b924de61673fbe041ba240a01c09e79930
 .dropdown-content{
   top:auto !important;
   overflow-y: visible;
   background-color: rgba(20, 29, 24, 0.651);
 }
-<<<<<<< HEAD
 .dropdown-content li a{
   color: white;
 }
 
-=======
->>>>>>> 9963a2b924de61673fbe041ba240a01c09e79930
 
 
 
