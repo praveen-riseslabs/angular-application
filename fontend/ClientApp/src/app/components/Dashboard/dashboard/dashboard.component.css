@@ -15,5 +15,65 @@
     }
     .images{
         border-radius: 50%;
+        position: relative;
+        max-width: 100%;
+        height: auto;
+    }
+    .content-heading span{
+        font-weight: 700;
     }
   }
+
+  @media screen and (min-width: 601px) and (max-width: 991px) {
+    .dashboard-image{
+        position: relative;
+        height: 300px;
+        width: 100%;
+    }
+    .heading{
+        font-size: 16px;
+        text-align: center;
+        font-weight: 700;
+        font-family: 'Cabin', arial, sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+
+    }
+    .images{
+        border-radius: 50%;
+        position: relative;
+        max-width: 100%;
+        height: auto;
+    }
+    .content-heading span{
+        font-weight: 700;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .dashboard-image{
+        position: relative;
+        height: 300px;
+        width: 100%;
+    }
+    .heading{
+        font-size: 16px;
+        text-align: center;
+        font-weight: 700;
+        font-family: 'Cabin', arial, sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+
+    }
+    .images{
+        border-radius: 50%;
+        position: relative;
+        max-width: 100%;
+        height: auto;
+    }
+    .content-heading span{
+        font-weight: 700;
+    }
+  }
+
+  
