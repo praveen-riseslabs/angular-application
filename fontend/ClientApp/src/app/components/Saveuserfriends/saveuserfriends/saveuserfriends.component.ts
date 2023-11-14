@@ -25,8 +25,18 @@ export class SaveuserfriendsComponent implements OnInit {
   
   }
 
+  // onFileChange(event: any): void {
+  //   const fileInput = event.target;
+  //   if (fileInput.files.length > 0) {
+  //     const file = fileInput.files[0];
+  //     this.userfrienddata.Filedata = file;
+  //   }
+  // }
+
   saveUserFriendData(){
     debugger
+   
+
     const currentUserId = localStorage.getItem('userid');
     if (!currentUserId) {
       alert('UserId not found in localStorage');

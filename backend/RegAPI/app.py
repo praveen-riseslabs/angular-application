@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
 from flask_mail import Mail, Message
+import os
 
 app = Flask(__name__)
 mail = Mail(app)
@@ -14,7 +15,9 @@ app.config['MAIL_PASSWORD'] = 'daig wwwg uczp crue'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
+
+
+
 import user_controller
-import forgotpassword
 if __name__ == '__main':
     app.run(debug=True)

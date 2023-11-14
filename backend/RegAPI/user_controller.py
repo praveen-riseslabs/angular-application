@@ -1,7 +1,8 @@
 from app import app
-import mysql.connector
+import mysql.connector, os
 from flask import jsonify, abort
 from flask import request
+from werkzeug.utils import secure_filename
 import jwt
 from datetime import datetime, timedelta
 from functools import wraps
@@ -15,6 +16,10 @@ import random
 import bcrypt
 secret_key = ''.join(secrets.choice(string.ascii_letters + string.digits) for _ in range(32))
 app.config['SECRET_KEY'] = secret_key
+
+UPLOAD_FOLDER = 'E:\fiendfiles'
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'mp4', 'mp3'}
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
 db = mysql.connector.connect(
@@ -40,9 +45,6 @@ def generate_otp():
 
 def generate_token(email, password):
     return jwt.encode({'email': email, 'password': password}, app.config['SECRET_KEY'], algorithm='HS256')
-
-def get_token_for_forgot_password(self,expires_sec=300):
-    serial = Serializer(app.config['SECRET_KEY'], expires_in = expires_sec)
 
 @app.route("/getuser", methods=["GET"])
 def getuserdetails():
@@ -217,10 +219,13 @@ def update_user_password():
     except Exception as e:
         print(e)
         return "Internal Server Error", 500
-    
-@app.route('/saveuserfriends' , methods =["POST"])
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/saveuserfriends', methods=["POST"])
 def saveuserfriendsdetails():
-    # pdb.set_trace()
+    pdb.set_trace()
     try:
         _json = request.json
         _userid = _json.get('UserID')
@@ -228,23 +233,42 @@ def saveuserfriendsdetails():
         _city = _json.get('City')
         _contact = _json.get('Contact')
         _profession = _json.get('Profession')
-        print(_userid,_friendname,_city,_contact,_profession)
+        _file = _json.get('Filedata')
+        print(_city,_contact)
         if _friendname and _city and _contact and _profession and request.method == 'POST':
-            
-            # Query the database to check if the user with provided email and password exists
-            insert_query = "INSERT INTO saveuserfriends (UserID,FriendName,City,Contact,Profession) VALUES (%s,%s, %s, %s, %s)"
-            values = (_userid,_friendname, _city, _contact, _profession)
-            cur.execute(insert_query, values)
-            db.commit()
-            response = {'message': 'User Friend Data Saved!', 'userid': _userid, 'friendname': _friendname,
-                        'city': _city, 'contact': _contact, 'profession': _profession}
-            return jsonify(response), 200
+            # Check if the post request has the file part
+            # if 'Filedata' in request.files:
+                # print(request.files)
+                # file = request.files['file']
+                # print(file)
+                # Check if the file is allowed and has a filename
+                print(_file)
+                if _file and allowed_file(_file):
+                    # Generate a secure filename and save the file
+                    filename = secure_filename(_file)
+                    filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                    # _file.save(filepath)
+
+                    # Insert data and file path into the database
+                    insert_query = "INSERT INTO saveuserfriends (UserID, FriendName, City, Contact, Profession, Filepath) VALUES (%s, %s, %s, %s, %s, %s)"
+                    values = (_userid, _friendname, _city, _contact, _profession, filepath)
+                    cur.execute(insert_query, values)
+                    db.commit()
+
+                    response = {'message': 'User Friend Data Saved!', 'userid': _userid, 'friendname': _friendname,
+                                'city': _city, 'contact': _contact, 'profession': _profession, 'filepath': filepath}
+                    return jsonify(response), 200
+                else:
+                    return jsonify({'message': 'Invalid file type or no file provided'}), 400
+            # else:
+            #     return jsonify({'message': 'File not provided'}), 400
         else:
-                return jsonify({'message': 'Invalid credentials'}), 401
-        
+            return jsonify({'message': 'Invalid credentials'}), 401
+
     except Exception as e:
         print(e)
         abort(500, description='Internal Server error')
+
 
 @app.route('/userfriendslist', methods=['POST'])
 def GetUserFriendsList():
