@@ -17,7 +17,7 @@ import bcrypt
 secret_key = ''.join(secrets.choice(string.ascii_letters + string.digits) for _ in range(32))
 app.config['SECRET_KEY'] = secret_key
 
-UPLOAD_FOLDER = 'E:\fiendfiles'
+UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'mp4', 'mp3'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -225,29 +225,27 @@ def allowed_file(filename):
 
 @app.route('/saveuserfriends', methods=["POST"])
 def saveuserfriendsdetails():
-    pdb.set_trace()
+    # pdb.set_trace()
     try:
-        _json = request.json
-        _userid = _json.get('UserID')
-        _friendname = _json.get('FriendName')
-        _city = _json.get('City')
-        _contact = _json.get('Contact')
-        _profession = _json.get('Profession')
-        _file = _json.get('Filedata')
-        print(_city,_contact)
+        # _json = request.json
+        _userid = request.form.get('UserID')
+        _friendname = request.form.get('FriendName')
+        _city = request.form.get('City')
+        _contact = request.form.get('Contact')
+        _profession = request.form.get('Profession')
+        print(_city,_profession)
         if _friendname and _city and _contact and _profession and request.method == 'POST':
-            # Check if the post request has the file part
-            # if 'Filedata' in request.files:
-                # print(request.files)
-                # file = request.files['file']
-                # print(file)
-                # Check if the file is allowed and has a filename
-                print(_file)
-                if _file and allowed_file(_file):
+            print(request.files)
+            if 'Filedata' in request.files:
+                file = request.files['Filedata']
+                print(file)
+                if file and allowed_file(file.filename):
                     # Generate a secure filename and save the file
-                    filename = secure_filename(_file)
-                    filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-                    # _file.save(filepath)
+                    # filename = secure_filename(file)
+                    # print(filename)
+                    filepath = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+                    print(filepath)
+                    file.save(filepath)
 
                     # Insert data and file path into the database
                     insert_query = "INSERT INTO saveuserfriends (UserID, FriendName, City, Contact, Profession, Filepath) VALUES (%s, %s, %s, %s, %s, %s)"
@@ -260,8 +258,8 @@ def saveuserfriendsdetails():
                     return jsonify(response), 200
                 else:
                     return jsonify({'message': 'Invalid file type or no file provided'}), 400
-            # else:
-            #     return jsonify({'message': 'File not provided'}), 400
+            else:
+                return jsonify({'message': 'File not provided'}), 400
         else:
             return jsonify({'message': 'Invalid credentials'}), 401
 

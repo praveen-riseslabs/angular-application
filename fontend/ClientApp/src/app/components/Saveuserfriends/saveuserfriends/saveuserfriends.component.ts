@@ -25,17 +25,17 @@ export class SaveuserfriendsComponent implements OnInit {
   
   }
 
-  // onFileChange(event: any): void {
-  //   const fileInput = event.target;
-  //   if (fileInput.files.length > 0) {
-  //     const file = fileInput.files[0];
-  //     this.userfrienddata.Filedata = file;
-  //   }
-  // }
+  onFileChange(event: any): void {
+    const fileInput = event.target;
+    if (fileInput.files.length > 0) {
+      const file = fileInput.files[0];
+      this.userfrienddata.Filedata = file;
+    }
+  }
 
   saveUserFriendData(){
     debugger
-   
+    
 
     const currentUserId = localStorage.getItem('userid');
     if (!currentUserId) {
@@ -44,7 +44,16 @@ export class SaveuserfriendsComponent implements OnInit {
     }
     this.userfrienddata.UserID = Number(currentUserId); 
 
-        this.saveuserfriendsdataservice.saveUserFriendData(this.userfrienddata).subscribe((response: any) => {
+    const formData = new FormData();
+    formData.append('UserID', this.userfrienddata.UserID.toString());
+    formData.append('FriendName', this.userfrienddata.FriendName);
+    formData.append('City', this.userfrienddata.City);
+    formData.append('Contact', this.userfrienddata.Contact.toString());
+    formData.append('Profession', this.userfrienddata.Profession);
+    formData.append('Filedata', this.userfrienddata.Filedata);
+
+
+        this.saveuserfriendsdataservice.saveUserFriendData(formData).subscribe((response: any) => {
           if(response.message == "User Friend Data Saved!"){
             M.toast({html: 'User Friend Data Saved', classes: 'rounded'});
             this.ngOnInit()
