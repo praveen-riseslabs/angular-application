@@ -7,18 +7,33 @@ import jwt
 from datetime import datetime, timedelta
 from functools import wraps
 import secrets
+# from google.cloud import storage
 import string , pdb
 from models.userdata import User
 from flask_mail import Mail, Message
 from app import mail
-import random
+import random, boto3
 # from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 import bcrypt
 secret_key = ''.join(secrets.choice(string.ascii_letters + string.digits) for _ in range(32))
 app.config['SECRET_KEY'] = secret_key
 
+BUCKET_NAME = 'riseslabs'
+S3_BUCKET_NAME = 'riseslabs'
+AWS_ACCESS_KEY= 'AKIAVAND6V4DC36JGN47'
+AWS_SECRET_ACCESS_KEY= '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'
+AWS_DOMAIN= 'https://riseslabs.s3.ap-south-1.amazonaws.com/'
+S3_REGION = 'ap-south-1'
 UPLOAD_FOLDER = 'uploads'
+
+# Initialize AWS S3 client
+s3 = boto3.client('s3', aws_access_key_id=AWS_ACCESS_KEY, aws_secret_access_key=AWS_SECRET_ACCESS_KEY, region_name=S3_REGION)
+
+
+
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'mp4', 'mp3'}
+# storage_client = storage.Client()
+
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
@@ -225,7 +240,7 @@ def allowed_file(filename):
 
 @app.route('/saveuserfriends', methods=["POST"])
 def saveuserfriendsdetails():
-    # pdb.set_trace()
+    pdb.set_trace()
     try:
         # _json = request.json
         _userid = request.form.get('UserID')
@@ -243,18 +258,30 @@ def saveuserfriendsdetails():
                     # Generate a secure filename and save the file
                     # filename = secure_filename(file)
                     # print(filename)
-                    filepath = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
-                    print(filepath)
-                    file.save(filepath)
+                    # blob = storage_client.bucket(BUCKET_NAME).blob(file.filename)
+                    # blob.upload_from_string(file.read(), content_type=file.content_type)
+                    # file_url = blob.public_url
+                    # print(file_url)
+                    # Upload the file to AWS S3
+                    print(file.filename)
+                    s3.upload_fileobj(file, S3_BUCKET_NAME, file.filename)
+
+                    # Get the public URL of the uploaded file
+                    file_url = f'https://{S3_BUCKET_NAME}.s3.{S3_REGION}.amazonaws.com/{file.filename}'
+                    print(file_url)
+
+                    # filepath = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+                    # print(filepath)
+                    # file.save(filepath)
 
                     # Insert data and file path into the database
                     insert_query = "INSERT INTO saveuserfriends (UserID, FriendName, City, Contact, Profession, Filepath) VALUES (%s, %s, %s, %s, %s, %s)"
-                    values = (_userid, _friendname, _city, _contact, _profession, filepath)
+                    values = (_userid, _friendname, _city, _contact, _profession, file_url)
                     cur.execute(insert_query, values)
                     db.commit()
 
                     response = {'message': 'User Friend Data Saved!', 'userid': _userid, 'friendname': _friendname,
-                                'city': _city, 'contact': _contact, 'profession': _profession, 'filepath': filepath}
+                                'city': _city, 'contact': _contact, 'profession': _profession, 'filepath': file_url}
                     return jsonify(response), 200
                 else:
                     return jsonify({'message': 'Invalid file type or no file provided'}), 400
