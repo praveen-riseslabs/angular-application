@@ -19,17 +19,26 @@ export class UserfriendslistComponent implements OnInit {
   }
 
   getAllFriendsList(){
+    debugger 
     const currentUserId = localStorage.getItem('userid');
     if (!currentUserId) {
       alert('UserId not found in localStorage');
       return;
     }
-    this.UserId = Number(currentUserId); 
+    this.UserId = Number(currentUserId);
 
         this.getAllFriendsListService.getAllFriendsList(this.UserId).subscribe((response: any) => {
           this.userfriendslist = response 
           console.log(this.userfriendslist)
         })
   }
+  getFileNameFromPath(filePath: string): string {
+    // if (this.userfriendslist.includes( )) {
+    //   const parts = filePath.split('/');
+    //   return parts[parts.length - 1];
+    // }
+    return '';
+  }
+
 
 }

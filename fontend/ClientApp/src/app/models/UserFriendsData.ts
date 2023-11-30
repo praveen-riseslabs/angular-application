@@ -7,5 +7,5 @@ export class UserFriendsData
       City !:string;
       Contact !: bigint;
       Profession !: string;
-      Filedata !: string;
+      Filepath !: string;
 }

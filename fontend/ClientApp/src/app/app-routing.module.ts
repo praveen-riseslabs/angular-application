@@ -11,6 +11,7 @@ import { SaveuserfriendsComponent } from './components/Saveuserfriends/saveuserf
 import { EditProfileComponent } from './components/Editprofile/edit-profile/edit-profile.component';
 import { UpdatepasswordComponent } from './components/Updatepassword/updatepassword/updatepassword.component';
 import { DashboardComponent } from './components/Dashboard/dashboard/dashboard.component';
+import { AddUserPicturesComponent } from './components/Adduserpictures/add-user-pictures/add-user-pictures.component';
 const routes: Routes = [{
   path:"login", component:LoginComponent},
   {
@@ -21,7 +22,8 @@ const routes: Routes = [{
       { path: 'edituser', component: EditProfileComponent},
       { path: 'userfriendslist', component: UserfriendslistComponent},
       { path: 'resetpassword', component: ResetpasswordComponent},
-      { path: 'dashboard', component: DashboardComponent}
+      { path: 'dashboard', component: DashboardComponent},
+      { path: 'userpictures', component:AddUserPicturesComponent}
     ]
   },
   {

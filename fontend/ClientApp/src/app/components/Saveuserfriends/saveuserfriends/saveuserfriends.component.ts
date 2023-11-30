@@ -29,7 +29,7 @@ export class SaveuserfriendsComponent implements OnInit {
     const fileInput = event.target;
     if (fileInput.files.length > 0) {
       const file = fileInput.files[0];
-      this.userfrienddata.Filedata = file;
+      this.userfrienddata.Filepath = file;
     }
   }
 
@@ -50,7 +50,7 @@ export class SaveuserfriendsComponent implements OnInit {
     formData.append('City', this.userfrienddata.City);
     formData.append('Contact', this.userfrienddata.Contact.toString());
     formData.append('Profession', this.userfrienddata.Profession);
-    formData.append('Filedata', this.userfrienddata.Filedata);
+    formData.append('Filepath', this.userfrienddata.Filepath);
 
 
         this.saveuserfriendsdataservice.saveUserFriendData(formData).subscribe((response: any) => {

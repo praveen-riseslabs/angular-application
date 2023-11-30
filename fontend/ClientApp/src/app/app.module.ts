@@ -16,6 +16,7 @@ import { UserfriendslistComponent } from './components/userfriendslist/userfrien
 import { EditProfileComponent } from './components/Editprofile/edit-profile/edit-profile.component';
 import { UpdatepasswordComponent } from './components/Updatepassword/updatepassword/updatepassword.component';
 import { DashboardComponent } from './components/Dashboard/dashboard/dashboard.component';
+import { AddUserPicturesComponent } from './components/Adduserpictures/add-user-pictures/add-user-pictures.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { DashboardComponent } from './components/Dashboard/dashboard/dashboard.c
     UserfriendslistComponent,
     EditProfileComponent,
     UpdatepasswordComponent,
-    DashboardComponent
+    DashboardComponent,
+    AddUserPicturesComponent
   ],
   imports: [
     BrowserModule,

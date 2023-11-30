@@ -240,7 +240,6 @@ def allowed_file(filename):
 
 @app.route('/saveuserfriends', methods=["POST"])
 def saveuserfriendsdetails():
-    pdb.set_trace()
     try:
         # _json = request.json
         _userid = request.form.get('UserID')
@@ -251,8 +250,8 @@ def saveuserfriendsdetails():
         print(_city,_profession)
         if _friendname and _city and _contact and _profession and request.method == 'POST':
             print(request.files)
-            if 'Filedata' in request.files:
-                file = request.files['Filedata']
+            if 'Filepath' in request.files:
+                file = request.files['Filepath']
                 print(file)
                 if file and allowed_file(file.filename):
                     # Generate a secure filename and save the file
@@ -392,3 +391,88 @@ def reset_password_with_token():
     except Exception as e:
         print(e)
         return "An error occurred while updating the profile", 500
+    
+@app.route('/savemypictures', methods=['POST'])
+def saveMyPicutures():
+    try:
+        _userid = request.form.get('UserID')
+        if request.method == 'POST':
+            print(request.files)
+            if 'Picture' in request.files:
+                picture = request.files['Picture']
+                print(picture)
+                if picture:
+                    
+                    print(picture.filename)
+                    s3.upload_fileobj(picture, S3_BUCKET_NAME, picture.filename)
+
+                    # Get the public URL of the uploaded file
+                    file_url = f'https://{S3_BUCKET_NAME}.s3.{S3_REGION}.amazonaws.com/{picture.filename}'
+                    print(file_url)
+
+                    
+                    insert_query = "INSERT INTO userpictures (UserID,Picture) VALUES (%s, %s)"
+                    values = (_userid, file_url)
+                    cur.execute(insert_query, values)
+                    db.commit()
+
+                    response = {'message': 'User Picture Data Saved!', 'userid': _userid, 'filepath': file_url}
+                    return jsonify(response), 200
+                else:
+                    return jsonify({'message': 'Invalid file type or no file provided'}), 400
+            else:
+                return jsonify({'message': 'File not provided'}), 400
+        else:
+            return jsonify({'message': 'Invalid credentials'}), 401
+
+    except Exception as e:
+        print(e)
+        abort(500, description='Internal Server error')
+
+@app.route('/deleteuserpicture/<int:PictureId>', methods=['DELETE'])
+def delete_photo(PictureId):
+    try:
+        # Your code for deleting the photo based on pictureId
+        # Replace the following line with your actual deletion logic
+        delete_query = "DELETE FROM userpictures WHERE PictureId = %s"
+        values = (PictureId,)
+        cur.execute(delete_query, values)
+        db.commit()
+        return jsonify({'message': f'Photo with PictureId {PictureId} deleted successfully'}), 200
+
+    except Exception as e:
+        print(e)
+        return jsonify({'error': 'Internal Server Error'}), 500
+
+@app.route('/getuserpictures', methods=['GET'])
+def get_photos():
+    try:
+        cur.execute("SELECT * FROM userpictures")
+        result = cur.fetchall()
+        if len(result)>0:
+           return jsonify(result)
+        else:
+           return "No data found"
+    except Exception as e:
+        print(e)
+        return jsonify({'error': 'Internal Server Error'}), 500
+    
+@app.route('/edituserpicture/<int:PictureId>', methods=['PUT'])
+def update_photo(PictureId):
+    try:
+        data = request.get_json()
+        if 'photo' in data:
+            new_photo = data['photo']
+            # Your code for updating the photo based on pictureId and new_photo
+            # Replace the following line with your actual update logic
+            update_query = "UPDATE userpictures SET Picture = %s WHERE PictureId = %s"
+            values = (new_photo, PictureId)
+            cur.execute(update_query, values)
+            db.commit()
+            return jsonify({'message': f'Photo with PictureId {PictureId} updated successfully'}), 200
+        else:
+            return jsonify({'error': 'Invalid request'}), 400
+
+    except Exception as e:
+        print(e)
+        return jsonify({'error': 'Internal Server Error'}), 500
