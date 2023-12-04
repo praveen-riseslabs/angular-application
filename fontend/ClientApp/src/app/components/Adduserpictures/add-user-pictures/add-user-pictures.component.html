@@ -29,16 +29,27 @@
   <div class="col s4" *ngFor="let picture of userPictureslist">
     <div class="card">
       <div class="card-image">
-        <img [src]="picture.Picture" height="200px" width="250px" ><br><br>
-        <a class="btn-floating halfway-fab waves-effect waves-light red" (click)="deletePhoto(userpictures.PictureId)">
-          <i class="material-icons">delete</i>
-        </a>
-        <a class="btn-floating halfway-fab waves-effect waves-light blue" (click)="editPhoto(userpictures.PictureId)">
+        <img [src]="picture.Picture" height="200px" width="300px" ><br>
+        
+        <a class="btn-floating" (click)="editPhoto(picture.PictureId)">
           <i class="material-icons">edit</i>
         </a>
-      </div>
-      <!-- ... -->
+        <a class="btn-floating red" (click)="deletePhoto(picture.PictureId)">
+          <i class="material-icons right">delete</i>
+        </a>
+      </div>   
+    </div>
+ </div>
+</div>
+</div>
+
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <h4>Edit Picture</h4>
+      <input type="file" id="editFile" name="editFile" (change)="onFileChange($event)">
+    </div>
+    <div class="modal-footer">
+      <a class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+      <a class="modal-close waves-effect waves-red btn-flat" (click)="updatePhoto(this.userpictures.PictureId)">Update</a>
     </div>
   </div>
-</div>
-</div>

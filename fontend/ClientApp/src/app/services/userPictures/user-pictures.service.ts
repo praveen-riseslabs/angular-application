@@ -26,8 +26,12 @@ export class UserPicturesService {
     const url = `${this.baseUrl}/deleteuserpicture/${index}`;
     return this.http.delete<any>(url);
   }
-  updatePhoto(index: number, photo: string): Observable<any> {
+  updatePhoto(index: number, data: any): Observable<any> {
+    const headers = new HttpHeaders();
+    headers.set('Content-Type', 'multipart/form-data');
     const url = `${this.baseUrl}/edituserpicture/${index}`;
-    return this.http.put<any>(url, { photo });
+    return this.http.put<any>(url, data, { headers:headers});
   }
+ 
 }
+

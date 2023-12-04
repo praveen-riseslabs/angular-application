@@ -17,6 +17,10 @@ currentuser : number;
   constructor(private userPicturesservice : UserPicturesService, private cdr : ChangeDetectorRef) { }
 
   ngOnInit() {
+    document.addEventListener('DOMContentLoaded', function() {
+      const elems = document.querySelectorAll('.modal');
+      M.Modal.init(elems);
+    });
   }
 
   
@@ -55,21 +59,49 @@ currentuser : number;
     debugger
     this.userPicturesservice.getPhotos().subscribe(photos => {
       this.userPictureslist = photos;
+      console.log(this.userPictureslist)
     });
   }
   triggerRerender() {
     this.cdr.detectChanges();
   }
 
-  updatePhoto(index: number, newPhoto: string): void {
-    this.userPicturesservice.updatePhoto(index, newPhoto).subscribe(() => {
-      this.fetchPhotos(); // Refresh the photos after update
-    });
+  editPhoto(pictureId: number): void {
+    this.userpictures.PictureId = pictureId;
+    this.userpictures.Picture = null;
+    const modalInstance = M.Modal.getInstance(document.getElementById('editModal'));
+    modalInstance.open();
+  }
+   
+  updatePhoto(pictureId: number): void {
+    debugger
+    if ( pictureId) {
+        // this.userpictures.PictureId == index
+      const formData = new FormData();
+      formData.append('PictureId', this.userpictures.PictureId.toString());
+      formData.append('Picture', this.userpictures.Picture);  
+      this.userPicturesservice.updatePhoto(pictureId,formData).subscribe((response: any) => {
+        this.fetchPhotos(); 
+        this.cancelSelection();
+        const modalInstance = M.Modal.getInstance(document.getElementById('editModal'));
+        modalInstance.close();
+      });
+    } else {
+      console.log('No picture selected for update');
+    }
+  }
+   
+  cancelSelection(): void {
+    this.userpictures.Picture = undefined;
+    const modalInstance = M.Modal.getInstance(document.getElementById('editModal'));
+    modalInstance.close();
   }
 
   deletePhoto(index: number): void {
+    debugger
     this.userPicturesservice.deletePhoto(index).subscribe(() => {
-      this.fetchPhotos(); // Refresh the photos after deletion
+      this.fetchPhotos();
+      M.toast({html: ' Picture deleted', classes: 'rounded'});
     });
   }
 

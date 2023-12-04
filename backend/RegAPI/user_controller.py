@@ -459,16 +459,29 @@ def get_photos():
     
 @app.route('/edituserpicture/<int:PictureId>', methods=['PUT'])
 def update_photo(PictureId):
+    # pdb.set_trace()
     try:
-        data = request.get_json()
-        if 'photo' in data:
-            new_photo = data['photo']
-            # Your code for updating the photo based on pictureId and new_photo
-            # Replace the following line with your actual update logic
-            update_query = "UPDATE userpictures SET Picture = %s WHERE PictureId = %s"
-            values = (new_photo, PictureId)
-            cur.execute(update_query, values)
-            db.commit()
+        print(request.files)
+        if 'Picture' in request.files:
+            new_photo = request.files['Picture']
+            print(new_photo)
+            if new_photo:
+                    
+                    print(new_photo.filename)
+                    s3.upload_fileobj(new_photo, S3_BUCKET_NAME, new_photo.filename)
+
+                    # Get the public URL of the uploaded file
+                    file_url = f'https://{S3_BUCKET_NAME}.s3.{S3_REGION}.amazonaws.com/{new_photo.filename}'
+                    print(file_url)
+                    # Your code for updating the photo based on pictureId and new_photo
+                    # Replace the following line with your actual update logic
+                    update_query = "UPDATE userpictures SET Picture = %s WHERE PictureId = %s"
+                    values = (file_url, PictureId)
+                    cur.execute(update_query, values)
+                    db.commit()
+            else:
+                    return jsonify({'message': 'Invalid file type or no file provided'}), 400    
+                    
             return jsonify({'message': f'Photo with PictureId {PictureId} updated successfully'}), 200
         else:
             return jsonify({'error': 'Invalid request'}), 400
