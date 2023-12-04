@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef  } from '@angular/core';
 import { UserPictures } from 'src/app/models/UserPictures';
 import { UserPicturesService } from 'src/app/services/userPictures/user-pictures.service';
 declare var M : any;
@@ -14,10 +14,9 @@ userPictureslist : UserPictures[] = [];
 userpictures: UserPictures = new UserPictures();
 currentuser : number;
 
-  constructor(private userPicturesservice : UserPicturesService) { }
+  constructor(private userPicturesservice : UserPicturesService, private cdr : ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.fetchPhotos()
   }
 
   
@@ -57,6 +56,9 @@ currentuser : number;
     this.userPicturesservice.getPhotos().subscribe(photos => {
       this.userPictureslist = photos;
     });
+  }
+  triggerRerender() {
+    this.cdr.detectChanges();
   }
 
   updatePhoto(index: number, newPhoto: string): void {

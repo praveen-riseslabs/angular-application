@@ -18,16 +18,18 @@
   <button class="btn waves-effect waves-teal" (click)="saveUserFriendData()">Save</button>
   </div>
 </div>
+<div class="row">
+  <div class="col s12">
+  <button class="btn waves-effect waves-teal" (click)="fetchPhotos()">Pictures</button>
+  </div>
+</div>
 
-
-<!-- src/app/photo-album/photo-album.component.html -->
-
+<div *ngIf="userPictureslist.length > 0">
 <div class="row">
   <div class="col s4" *ngFor="let picture of userPictureslist">
     <div class="card">
       <div class="card-image">
-        <img [src]="userpictures.Picture" alt="User Picture">
-        <span class="card-title">Picture ID: {{ userpictures.PictureId }}</span>
+        <img [src]="picture.Picture" height="200px" width="250px" ><br><br>
         <a class="btn-floating halfway-fab waves-effect waves-light red" (click)="deletePhoto(userpictures.PictureId)">
           <i class="material-icons">delete</i>
         </a>
@@ -38,4 +40,5 @@
       <!-- ... -->
     </div>
   </div>
+</div>
 </div>
