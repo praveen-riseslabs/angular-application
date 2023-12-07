@@ -164,7 +164,7 @@ def logoutUser():
 
 @app.route('/forgotpasswords', methods =["POST"])
 def checkEmailToForgotPassword():
-    # pdb.set_trace()
+    pdb.set_trace()
     try:
         _json = request.json
         _email = _json['Email']
@@ -489,3 +489,27 @@ def update_photo(PictureId):
     except Exception as e:
         print(e)
         return jsonify({'error': 'Internal Server Error'}), 500
+    
+@app.route('/getCountries', methods=['GET'])
+def get_countries():
+    cur.execute("SELECT * FROM countries")
+    countries = cur.fetchall()
+    return jsonify(countries)
+
+@app.route('/getStates/<int:country_id>', methods=['GET'])
+def get_states(country_id):
+    cur.execute("SELECT * FROM states WHERE country_id = %s", (country_id,))
+    states = cur.fetchall()
+    return jsonify(states)
+
+@app.route('/getDistricts/<int:state_id>', methods=['GET'])
+def get_districts(state_id):
+    cur.execute("SELECT * FROM districts WHERE state_id = %s", (state_id,))
+    districts = cur.fetchall()
+    return jsonify(districts)
+
+@app.route('/getMandals/<int:district_id>', methods=['GET'])
+def get_mandals(district_id):
+    cur.execute("SELECT * FROM mandals WHERE district_id = %s", (district_id,))
+    mandals = cur.fetchall()
+    return jsonify(mandals)

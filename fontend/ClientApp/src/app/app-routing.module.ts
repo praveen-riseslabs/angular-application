@@ -12,6 +12,7 @@ import { EditProfileComponent } from './components/Editprofile/edit-profile/edit
 import { UpdatepasswordComponent } from './components/Updatepassword/updatepassword/updatepassword.component';
 import { DashboardComponent } from './components/Dashboard/dashboard/dashboard.component';
 import { AddUserPicturesComponent } from './components/Adduserpictures/add-user-pictures/add-user-pictures.component';
+import { AddressDropdownComponent } from './components/Addressdropdown/address-dropdown/address-dropdown.component';
 const routes: Routes = [{
   path:"login", component:LoginComponent},
   {
@@ -23,7 +24,9 @@ const routes: Routes = [{
       { path: 'userfriendslist', component: UserfriendslistComponent},
       { path: 'resetpassword', component: ResetpasswordComponent},
       { path: 'dashboard', component: DashboardComponent},
-      { path: 'userpictures', component:AddUserPicturesComponent}
+      { path: 'userpictures', component:AddUserPicturesComponent},
+      { path: 'addaddress', component:AddressDropdownComponent}
+
     ]
   },
   {
