@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
       (response: any) => {
         console.log(response)
         
-          const firstToken = response.tokendata[0];
+          const firstToken = response.tokendata[response.tokendata.length -1];
           const tokenvalue = firstToken.Token
           const userid = firstToken.UserID
           const localstorage = localStorage.setItem('token', tokenvalue)

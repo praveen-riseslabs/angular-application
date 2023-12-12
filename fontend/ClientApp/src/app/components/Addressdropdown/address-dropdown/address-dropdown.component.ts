@@ -3,6 +3,8 @@ import { UserfriendslistService } from 'src/app/services/userfrindslistservice/u
 import { UserFriendsData } from 'src/app/models/UserFriendsData';
 import { AddressService } from 'src/app/services/Addressservice/address.service';
 import { Countries, Districts, Mandals, States } from 'src/app/models/Addressdata';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 declare var M:any;
 @Component({
@@ -23,12 +25,15 @@ export class AddressDropdownComponent implements OnInit, AfterViewInit {
   mandals: Mandals = new Mandals();
   mandalsList: Mandals[]=[];
 
+  
+
   constructor(private getAllFriendsListService : UserfriendslistService,
-              private addressService: AddressService,private cdr: ChangeDetectorRef) { }
+              private addressService: AddressService,private cdr: ChangeDetectorRef
+              , private http : HttpClient) { }
   url:string='http://127.0.0.1:5000'
   ngOnInit() {
     this.initMaterializeSelect();
-  this.getCountries()
+    this.getcountries()
   }
    ngAfterViewInit(): void {
   //   this.initMaterializeSelect();
@@ -51,26 +56,35 @@ export class AddressDropdownComponent implements OnInit, AfterViewInit {
 //       })
 // }
 
-getCountries():void{
-  debugger
-  this.addressService.getCountries(this.url+'/getCountries').subscribe((resp:any)=>{
-    this.countryList=resp;
-  })
-}
+// getCountries():Observable<countryList1 []>{
+//   debugger
+//   return this.addressService.getCountries<countryList1 []>(this.url+'/getCountries').subscribe((resp:any)=>{
+//     countryList1 = resp;
+//     this.countryList=countryList1;
+//     this.initMaterializeSelect();
+    
+//   })
+  
+// }
 
-
-GetStatesbyId(country_id:number):void{
+getcountries(): Observable<Countries[]> {
+  
+  return this.http.get<Countries[]>(this.url+'/getCountries')
+    }
+    
+GetStatesbyId(country_id):void{
   debugger
   this.addressService.getStateById(this.url+'/getStates/'+country_id).subscribe((resp:any)=>{
     this.statesList=resp;
+    this.initMaterializeSelect();
   })
 }
-getDistrictsbyId(state_id:number):void{
+getDistrictsbyId(state_id):void{
   this.addressService.getDistrictById(this.url+'/getDistricts/'+state_id).subscribe((resp:any)=>{
     this.districtsList=resp;
   })
 }
-getMandalsbyId(district_id:number):void{
+getMandalsbyId(district_id):void{
   this.addressService.getMandalsbyId(this.url+'/getMandals/'+district_id).subscribe((resp:any)=>{
     this.mandalsList=resp;
   })

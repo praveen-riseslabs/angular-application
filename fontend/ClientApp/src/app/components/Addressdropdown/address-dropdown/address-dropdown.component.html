@@ -13,7 +13,7 @@
             <select [(ngModel)]="countries.country_id" id="Country" name="Country"
             (change)="GetStatesbyId(countries.country_id)">
             <option value="" disabled selected>Choose your option</option>
-                <option *ngFor="let item of countryList" value="{{item.country_id}}">{{item.country_name}}</option>
+                <option *ngFor="let item of countryList" value={{item.country_id}}>{{item.country_name}}</option>
             </select>
             <label>Countries</label>
           </div>
@@ -23,7 +23,7 @@
             <select [(ngModel)]="states.state_id" id="state" name="state"
             (change)="getDistrictsbyId(states.state_id)">
             <option value="" disabled selected>Choose your option</option>
-                <option *ngFor="let item of statesList"  value="{{item.state_id}}">{{item.state_name}}</option>
+                <option *ngFor="let item of statesList"  value={{item.state_id}}>{{item.state_name}}</option>
             </select>
             <label>States</label>
           </div>
@@ -33,7 +33,7 @@
             <select [(ngModel)]="countries.country_name" id="district" name="district"
             (change)="getMandalsbyId(districts.district_id)">
             <option value="" disabled selected>Choose your option</option>
-                <option *ngFor="let item of districtsList" value="{{item.district_id}}">{{item.district_name}}</option>
+                <option *ngFor="let item of districtsList" value={{item.district_id}}>{{item.district_name}}</option>
             </select>
             <label>Districts</label>
           </div>
@@ -42,7 +42,7 @@
         <div class="input-field">
           <select [(ngModel)]="states.state_name" id="mandal" name="mandal">
           <option value="" disabled selected>Choose your option</option>
-              <option *ngFor="let item of mandalsList" value="{{item.mandal_id}}">{{item.mandal_name}}</option>
+              <option *ngFor="let item of mandalsList" value={{item.mandal_id}} >{{item.mandal_name}}</option>
           </select>
           <label>Mandals</label>
         </div>
@@ -63,6 +63,11 @@
     </div>
   </div>
 
+
+ 
+
+
+  
   <!-- <script>
     document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('select');
