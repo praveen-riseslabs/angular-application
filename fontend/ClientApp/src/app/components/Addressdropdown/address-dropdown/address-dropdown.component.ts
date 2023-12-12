@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit} from '@angular/core';
+import { Component, OnInit, AfterViewInit,ChangeDetectorRef } from '@angular/core';
 import { UserfriendslistService } from 'src/app/services/userfrindslistservice/userfriendslist.service';
 import { UserFriendsData } from 'src/app/models/UserFriendsData';
 import { AddressService } from 'src/app/services/Addressservice/address.service';
@@ -24,7 +24,7 @@ export class AddressDropdownComponent implements OnInit, AfterViewInit {
   mandalsList: Mandals[]=[];
 
   constructor(private getAllFriendsListService : UserfriendslistService,
-              private addressService: AddressService) { }
+              private addressService: AddressService,private cdr: ChangeDetectorRef) { }
   url:string='http://127.0.0.1:5000'
   ngOnInit() {
     this.initMaterializeSelect();
@@ -38,26 +38,26 @@ export class AddressDropdownComponent implements OnInit, AfterViewInit {
   private initMaterializeSelect(): void {
   document.addEventListener('DOMContentLoaded', () => {
     const elems = document.querySelectorAll('select');
-    const instances = M.FormSelect.init(elems);
+    M.FormSelect.init(elems);
   });
 }
-getAllFriendsList(){
-  debugger 
-  const currentUserId = localStorage.getItem('userid');
-  this.UserId = Number(currentUserId);
-      this.getAllFriendsListService.getAllFriendsList(this.UserId).subscribe((response: any) => {
-        this.userfriendslist = response 
-        console.log(this.userfriendslist)
-      })
-}
+// getAllFriendsList(){
+//   debugger 
+//   const currentUserId = localStorage.getItem('userid');
+//   this.UserId = Number(currentUserId);
+//       this.getAllFriendsListService.getAllFriendsList(this.UserId).subscribe((response: any) => {
+//         this.userfriendslist = response 
+//         console.log(this.userfriendslist)
+//       })
+// }
 
 getCountries():void{
   debugger
   this.addressService.getCountries(this.url+'/getCountries').subscribe((resp:any)=>{
     this.countryList=resp;
-    this.countries=resp;
   })
 }
+
 
 GetStatesbyId(country_id:number):void{
   debugger

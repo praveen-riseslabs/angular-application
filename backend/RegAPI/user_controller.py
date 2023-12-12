@@ -254,14 +254,7 @@ def saveuserfriendsdetails():
                 file = request.files['Filepath']
                 print(file)
                 if file and allowed_file(file.filename):
-                    # Generate a secure filename and save the file
-                    # filename = secure_filename(file)
-                    # print(filename)
-                    # blob = storage_client.bucket(BUCKET_NAME).blob(file.filename)
-                    # blob.upload_from_string(file.read(), content_type=file.content_type)
-                    # file_url = blob.public_url
-                    # print(file_url)
-                    # Upload the file to AWS S3
+                    
                     print(file.filename)
                     s3.upload_fileobj(file, S3_BUCKET_NAME, file.filename)
 
@@ -269,11 +262,7 @@ def saveuserfriendsdetails():
                     file_url = f'https://{S3_BUCKET_NAME}.s3.{S3_REGION}.amazonaws.com/{file.filename}'
                     print(file_url)
 
-                    # filepath = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
-                    # print(filepath)
-                    # file.save(filepath)
-
-                    # Insert data and file path into the database
+                    
                     insert_query = "INSERT INTO saveuserfriends (UserID, FriendName, City, Contact, Profession, Filepath) VALUES (%s, %s, %s, %s, %s, %s)"
                     values = (_userid, _friendname, _city, _contact, _profession, file_url)
                     cur.execute(insert_query, values)
