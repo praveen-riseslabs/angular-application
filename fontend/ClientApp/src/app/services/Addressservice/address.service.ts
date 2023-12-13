@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import {Countries} from './../../models/Addressdata';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,8 @@ export class AddressService {
 
   constructor(private http:HttpClient) { }
 
-  getCountries(url:string):Observable<any>{
-    return this.http.get(url);
+  getCountries(url:string): Observable<Countries[]> {
+    return this.http.get<Countries[]>(url);
   }
   getStateById(url:string){
     return this.http.get(url);
