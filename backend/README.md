@@ -32,7 +32,8 @@ To ensure Flask is installed correctly, run this command:
 ![image](https://github.com/praveen-riseslabs/angular-fullstack/assets/146798534/b7b407d0-234d-4d8e-a7a9-38fa544116ed)
 
 install all modules and libraries using below command 
-Command : pip install -r requirements.txt
+
+![image](https://github.com/praveen-riseslabs/angular-fullstack/assets/146798534/2a58bbee-7fa4-44cd-846e-9030472c6d8c)
 
 Create a Flask Application:
 You can now create a Flask application. Start by creating a Python file, for example, app.py, and write your Flask code in it.
