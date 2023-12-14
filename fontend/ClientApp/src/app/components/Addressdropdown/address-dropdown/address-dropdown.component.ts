@@ -8,6 +8,7 @@ import { UserfriendslistService } from "src/app/services/userfrindslistservice/u
 import { UserFriendsData } from "src/app/models/UserFriendsData";
 import { AddressService } from "src/app/services/Addressservice/address.service";
 import {
+  Address,
   Countries,
   Districts,
   Mandals,
@@ -35,6 +36,8 @@ export class AddressDropdownComponent implements OnInit, AfterViewInit {
   districtsList: Districts[] = [];
   mandals: Mandals = new Mandals();
   mandalsList: Mandals[] = [];
+ addressdata: Address =new Address();
+ addressLiists: Address[] =[];
 
   constructor(
     private getAllFriendsListService: UserfriendslistService,
@@ -94,7 +97,31 @@ export class AddressDropdownComponent implements OnInit, AfterViewInit {
       });
   }
 
-  saveAddress(){
-    
-  }
+  saveAddress() {
+    debugger
+    // const currentUserId = localStorage.getItem('userid');
+    // this.addressdata.UserID = Number(currentUserId); 
+      const data = {
+      UserID : Number(localStorage.getItem('userid')),  
+      countries: this.countries.country_id,
+      states: this.states.state_id,
+      districts: this.districts.district_id,
+      mandals: this.mandals.mandal_id,
+      village: this.addressdata.Village,
+      area: this.addressdata.Area
+    };
+
+    this.addressService.saveAddress(data).subscribe(
+      response => {
+        if(response!=null){
+          M.toast({html: 'Address saved succesfully', classes: 'rounded'});
+          this.ngOnInit()
+          this.addressdata = new Address();
+        }     
+            },
+      error => {
+        console.log('Error saving address:', error);
+      }
+    );
+ }
 }

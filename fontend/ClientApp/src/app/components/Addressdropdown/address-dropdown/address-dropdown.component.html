@@ -44,7 +44,7 @@
       <div class="col s12 l4 m6">
         <div class="input-field">
           <label style="position: relative">Mandals</label>
-          <select class="browser-default" [(ngModel)]="mandals.state_name" id="mandal" name="mandal">
+          <select class="browser-default" [(ngModel)]="mandals.mandal_id" id="mandal" name="mandal">
           <option value="" disabled selected>Choose your option</option>
               <option *ngFor="let item of mandalsList" value={{item.mandal_id}} >{{item.mandal_name}}</option>
           </select>
@@ -54,12 +54,12 @@
       <div class="col s12 l6 ">
         <div class="input-field">
           <label style="position: relative">Village </label>
-          <input id="profession" type="text" name="profession" class="validate" [(ngModel)]="userfrienddata.Profession">
+          <input id="village" type="text" name="village" class="validate" [(ngModel)]="addressdata.Village">
         </div>
       </div>
       <div class="col s12">
         <div class="input-field">
-          <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <textarea id="textarea1" class="materialize-textarea" [(ngModel)]="addressdata.Area"></textarea>
           <label for="textarea1">Area</label>
         </div>
       </div>
@@ -73,14 +73,3 @@
     </div>
   </div>
 
-
- 
-
-
-  
-  <!-- <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems, options);
-  });
-  </script> -->

@@ -502,3 +502,34 @@ def get_mandals(district_id):
     cur.execute("SELECT * FROM mandals WHERE district_id = %s", (district_id,))
     mandals = cur.fetchall()
     return jsonify(mandals)
+
+@app.route('/saveaddress', methods=['POST'])
+def save_address():
+    data = request.get_json()
+    userid = data['UserID']
+    country = data['countries']
+    state = data['states']
+    district = data['districts']
+    mandal = data['mandals']
+    village = data['village']
+    area = data['area']
+    cur.execute("SELECT country_name FROM countries WHERE country_id = %s", (country,))
+    country_name = cur.fetchone()
+    country_name = country_name['country_name'] if country_name else None
+    print(country_name)
+    cur.execute("SELECT state_name FROM states WHERE state_id = %s", (state,))
+    state_name = cur.fetchone()
+    state_name = state_name['state_name'] if state_name else None
+    cur.execute("SELECT district_name FROM districts WHERE district_id = %s", (district,))
+    district_name = cur.fetchone()
+    district_name = district_name['district_name'] if district_name else None
+    cur.execute("SELECT mandal_name FROM mandals WHERE mandal_id = %s", (mandal,))
+    mandal_name = cur.fetchone()
+    mandal_name = mandal_name['mandal_name'] if mandal_name else None
+    print(mandal_name)
+    insert_query ="INSERT INTO addresses (UserID, country, state, district, mandal, village, area) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+    values =(userid,country_name, state_name, district_name, mandal_name, village, area)
+    cur.execute(insert_query, values)
+    db.commit()
+
+    return jsonify({'message': 'Address saved successfully'}), 201

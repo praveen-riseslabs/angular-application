@@ -21,3 +21,14 @@ export class Districts{
     state_id!:number
 
 }
+
+export class Address{
+    AddressId!:number;
+    UserID! : number
+    // country_id!:number;
+    // state_id!: number;
+    // district_id!: number;
+    // mandal_id!: number;
+    Village!: string
+    Area!: string
+}

@@ -9,6 +9,7 @@ import {Countries} from './../../models/Addressdata';
 export class AddressService {
 
   constructor(private http:HttpClient) { }
+  private baseUrl = 'http://127.0.0.1:5000'; 
 
   getCountries(url:string): Observable<Countries[]> {
     return this.http.get<Countries[]>(url);
@@ -22,6 +23,9 @@ export class AddressService {
   getMandalsbyId(url:string){
     return this.http.get(url);
   }
-
+  saveAddress(data: any): Observable<any> {
+    const url = `${this.baseUrl}/saveaddress`; 
+    return this.http.post(url, data);
+  }
 }
 
