@@ -5,10 +5,10 @@ import {
   ChangeDetectorRef
 } from "@angular/core";
 import { UserfriendslistService } from "src/app/services/userfrindslistservice/userfriendslist.service";
-import { UserFriendsData } from "src/app/models/UserFriendsData";
 import { AddressService } from "src/app/services/Addressservice/address.service";
 import {
   Address,
+  AddressList,
   Countries,
   Districts,
   Mandals,
@@ -26,8 +26,8 @@ declare var M: any;
 })
 export class AddressDropdownComponent implements OnInit, AfterViewInit {
  UserId: number;
-  userfrienddata: UserFriendsData = new UserFriendsData();
-  userfriendslist: UserFriendsData[] = [];
+  alladdressess: AddressList = new AddressList();
+  alladdresslists: AddressList[] = [];
   countries: Countries = new Countries();
   countryList: Observable<Countries[]>;
   states: States = new States();
@@ -50,6 +50,7 @@ export class AddressDropdownComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.initMaterializeSelect();
     this.getCountries();
+    this.getAllAddressList();
   }
 
   ngAfterViewInit(): void {
@@ -124,4 +125,13 @@ export class AddressDropdownComponent implements OnInit, AfterViewInit {
       }
     );
  }
+ getAllAddressList(){
+  debugger 
+  const currentUserId = localStorage.getItem('userid');
+  this.UserId = Number(currentUserId);
+      this.addressService.getAllAddressList(this.url + "/getaddresses/" + this.UserId).subscribe((response: any) => {
+        this.alladdresslists = response 
+        console.log(this.alladdresslists)
+      })
+}
 }

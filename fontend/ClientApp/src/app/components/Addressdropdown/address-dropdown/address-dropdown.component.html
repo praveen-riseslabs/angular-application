@@ -73,3 +73,32 @@
     </div>
   </div>
 
+
+
+    <table>
+        <thead>
+          <tr>
+              <th>Country Name</th>
+              <th>State</th>
+              <th>District</th>
+              <th>Mandal</th>
+              <th>Village</th>
+              <th>Area</th>
+          </tr>
+        </thead>
+    
+        <tbody>
+          <tr *ngFor="let Obj of alladdresslists">
+            <td>{{Obj.country}}</td>
+            <td>{{Obj.state}}</td>
+            <td>{{Obj.district}}</td>
+            <td>{{Obj.mandal}}</td>
+            <td>{{Obj.village}}</td>
+            <td>{{Obj.area}}</td>
+            <td>
+              
+            </td>
+          </tr>
+        </tbody>
+      </table>
+

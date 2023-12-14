@@ -32,3 +32,14 @@ export class Address{
     Village!: string
     Area!: string
 }
+
+export class AddressList{
+    AddressId!:number;
+    UserID! : number
+    country!:string;
+    state!: string;
+    district!: string;
+    mandal!: string;
+    village!: string
+    area!: string
+}

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import {Countries} from './../../models/Addressdata';
+import {AddressList, Countries} from './../../models/Addressdata';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +27,8 @@ export class AddressService {
     const url = `${this.baseUrl}/saveaddress`; 
     return this.http.post(url, data);
   }
+  getAllAddressList(url: string) {
+    return this.http.get(url);
+}
 }
 

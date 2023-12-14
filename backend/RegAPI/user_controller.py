@@ -533,3 +533,24 @@ def save_address():
     db.commit()
 
     return jsonify({'message': 'Address saved successfully'}), 201
+
+@app.route('/getaddresses/<int:UserId>', methods=['GET'])
+def get_addresses(UserId):
+    try:
+        # Retrieve addresses based on the provided userid
+        # _json = request.json
+        # _userid = _json.get('UserID')
+        get_query="SELECT * FROM addresses WHERE UserID = %s"
+        cur.execute(get_query, (UserId,))
+        addresses = cur.fetchall()
+        db.commit()
+
+        # If addresses are found, return them as JSON
+        if addresses:
+            return jsonify(addresses), 200
+        else:
+            return jsonify({'message': 'No addresses found for the specified UserID'}), 404
+
+    except Exception as e:
+        print("Error:", e)
+        return jsonify({'message': 'Internal Server Error'}), 500
