@@ -33,7 +33,7 @@
         <div class="col s12 l4 m6">
           <div class="input-field">
             <label style="position: relative">Districts</label>
-            <select class="browser-default" [(ngModel)]="countries.country_name" id="district" name="district"
+            <select class="browser-default" [(ngModel)]="districts.district_id" id="district" name="district"
             (change)="getMandalsbyId(districts.district_id)">
             <option value="" disabled selected>Choose your option</option>
                 <option *ngFor="let item of districtsList" value={{item.district_id}}>{{item.district_name}}</option>
@@ -44,25 +44,31 @@
       <div class="col s12 l4 m6">
         <div class="input-field">
           <label style="position: relative">Mandals</label>
-          <select class="browser-default" [(ngModel)]="states.state_name" id="mandal" name="mandal">
+          <select class="browser-default" [(ngModel)]="mandals.state_name" id="mandal" name="mandal">
           <option value="" disabled selected>Choose your option</option>
               <option *ngFor="let item of mandalsList" value={{item.mandal_id}} >{{item.mandal_name}}</option>
           </select>
           
         </div>
       </div>
-      <div class="col s12 l4 m6">
+      <div class="col s12 l6 ">
         <div class="input-field">
+          <label style="position: relative">Village </label>
           <input id="profession" type="text" name="profession" class="validate" [(ngModel)]="userfrienddata.Profession">
-          <label for="profession">Profession</label>
         </div>
       </div>
-      
+      <div class="col s12">
+        <div class="input-field">
+          <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <label for="textarea1">Area</label>
+        </div>
+      </div>
+
     </div>
   
       <div class="row">
       <div class="col s12">
-      <button class="btn waves-effect waves-teal" (click)="saveUserFriendData()">Save</button>
+      <button class="btn waves-effect waves-teal" (click)="saveAddress()">Save</button>
       </div>
     </div>
   </div>

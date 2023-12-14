@@ -93,4 +93,8 @@ export class AddressDropdownComponent implements OnInit, AfterViewInit {
         this.mandalsList = resp;
       });
   }
+
+  saveAddress(){
+    
+  }
 }
