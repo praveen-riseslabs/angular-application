@@ -1,0 +1,57 @@
+CREATE DATABASE  IF NOT EXISTS `registrationdb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `registrationdb`;
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: registrationdb
+-- ------------------------------------------------------
+-- Server version	5.5.5-10.4.32-MariaDB
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `usertoken`
+--
+
+DROP TABLE IF EXISTS `usertoken`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `usertoken` (
+  `TokenID` int(11) NOT NULL AUTO_INCREMENT,
+  `UserID` int(11) NOT NULL,
+  `Email` varchar(50) NOT NULL,
+  `Token` varchar(255) NOT NULL,
+  PRIMARY KEY (`TokenID`),
+  KEY `fk_usertoken_user` (`UserID`),
+  CONSTRAINT `fk_usertoken_user` FOREIGN KEY (`UserID`) REFERENCES `registration` (`UserID`)
+) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usertoken`
+--
+
+LOCK TABLES `usertoken` WRITE;
+/*!40000 ALTER TABLE `usertoken` DISABLE KEYS */;
+INSERT INTO `usertoken` VALUES (157,2,'sai@gmail.com','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhaUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IlNhaUAxMjM0In0.4sYL5qy4f7aG34eGTE2vXB2I0VCOPkR89axAv0T_Sk8'),(158,3,'hari@gmail.com','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhcmlAZ21haWwuY29tIiwicGFzc3dvcmQiOiJoYXJpQDEyMyJ9.UYznUZwEaNBfkAUQIoKiqOPJKrL4b5pq-aUefX4BgDk'),(159,2,'sai@gmail.com','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhaUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IlNhaUAxMjM0In0.U43gtL5cgSPZp84hGcM6XJL4qlw9EvsWJKOqrnLR1m4'),(160,2,'sai@gmail.com','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhaUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IlNhaUAxMjM0In0.d4bp9HZ8NlS1OMAgEMMYQ6CBX_nfRxOje2QOor-vZyE'),(161,2,'sai@gmail.com','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhaUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IlNhaUAxMjM0In0.GJpA_yRaQUXeGoI1JalEAsSZv4IMJQvPvL05gqfH_Jc'),(162,2,'sai@gmail.com','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhaUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IlNhaUAxMjM0In0.60n7VIjTPUKA6QiXBqQ9UE-E2ep3vzXeTXULYXhlSBQ'),(163,2,'sai@gmail.com','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhaUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IlNhaUAxMjM0In0.VoVcpkoCePNe-DnekV2jAoqyd_2-oFS6cQfSetA_508'),(164,2,'sai@gmail.com','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhaUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IlNhaUAxMjM0In0.7SlV4iBt9yHq31leIWF8XdY8PW3P4-bq_uvRZQHEHR8'),(165,2,'sai@gmail.com','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhaUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IlNhaUAxMjM0In0.ZfquqC_6fp5N3CS7GZizH77jJ5ZHsFawey3Wd5GySIY'),(167,2,'sai@gmail.com','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhaUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IlNhaUAxMjM0In0.L-Jwyqk8UDd_vcDFoB3SvkiPwjZ2EI8kvQnglhfcoXM'),(168,2,'sai@gmail.com','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhaUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IlNhaUAxMjM0In0.rHCuTcRHOM2aAz2fNn7z4ItIqdP6GOgTzY2VbEWgHaY'),(169,2,'sai@gmail.com','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhaUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IlNhaUAxMjM0In0.lukQ0cbcUSwv0J9YVaNXTk9zWJJVl2tHd990vdBAbV8'),(171,2,'sai@gmail.com','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhaUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IlNhaUAxMjM0In0.vXcha6akraW-upFKSpJgb1S1QPjQIaVH9e6ldLMmoVI');
+/*!40000 ALTER TABLE `usertoken` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-12-16 18:05:07

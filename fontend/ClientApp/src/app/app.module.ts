@@ -18,6 +18,7 @@ import { UpdatepasswordComponent } from './components/Updatepassword/updatepassw
 import { DashboardComponent } from './components/Dashboard/dashboard/dashboard.component';
 import { AddUserPicturesComponent } from './components/Adduserpictures/add-user-pictures/add-user-pictures.component';
 import { AddressDropdownComponent } from './components/Addressdropdown/address-dropdown/address-dropdown.component';
+import {  SocialappComponent } from './components/socialapp/Social.app.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { AddressDropdownComponent } from './components/Addressdropdown/address-d
     UpdatepasswordComponent,
     DashboardComponent,
     AddUserPicturesComponent,
-    AddressDropdownComponent
+    AddressDropdownComponent,
+    SocialappComponent
   ],
   imports: [
     BrowserModule,
